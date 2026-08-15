@@ -28,28 +28,60 @@ if ($('logoTrack')) {
 
 /* ── full curriculum accordion (curriculum.html) ────────────────── */
 if ($('moduleGrid')) {
-  $('moduleGrid').innerHTML = MODULES.map(([title, points], i) => `
+  $('moduleGrid').innerHTML = MODULES.map(([title, points, tools, days], i) => `
     <details class="reveal rounded-2xl bg-white border border-inkDark/10 overflow-hidden hover:border-brand/40 transition-colors">
       <summary class="flex items-start gap-4 p-6">
         <span class="shrink-0 grid place-items-center h-9 w-9 rounded-lg bg-brand/10 text-brand text-[.85rem] font-semibold">${String(i+1).padStart(2,'0')}</span>
         <span class="flex-1 min-w-0">
-          <span class="block text-[.72rem] tracking-[.18em] uppercase text-brand font-semibold mb-1">Module ${i+1}</span>
+          <span class="block text-[.72rem] tracking-[.18em] uppercase text-brand font-semibold mb-1">Module ${i+1} · ${esc(days)} · 10 hrs</span>
           <span class="block font-display text-[1.02rem] leading-snug text-inkDark">${esc(title)}</span>
         </span>
         <span class="chev shrink-0 text-brand text-xl leading-none mt-1">+</span>
       </summary>
-      <ul class="px-6 pb-6 pl-[4.75rem] space-y-2.5 text-[.92rem] text-inkDark/70">
-        ${points.map(p => `<li class="flex gap-2.5"><span class="text-brand shrink-0">›</span>${esc(p)}</li>`).join('')}
-      </ul>
+      <div class="px-6 pb-6 pl-[4.75rem]">
+        <ul class="space-y-2.5 text-[.92rem] text-inkDark/70">
+          ${points.map(p => `<li class="flex gap-2.5"><span class="text-brand shrink-0">›</span>${esc(p)}</li>`).join('')}
+        </ul>
+        <p class="mt-5 pt-4 border-t border-inkDark/10 text-[.82rem] text-inkDark/55">
+          <span class="uppercase tracking-[.14em] text-brand font-semibold">Tools</span> · ${esc(tools)}
+        </p>
+      </div>
     </details>`).join('');
+}
+
+/* ── the internship phase (career.html) ─────────────────────────── */
+if ($('internshipGrid')) {
+  $('internshipGrid').innerHTML = INTERNSHIP.map(([title, when, points]) => `
+    <article class="reveal card rounded-2xl p-9">
+      <span class="eyebrow">${esc(when)}</span>
+      <h3 class="mt-3 font-display text-[1.35rem] mb-6">${esc(title)}</h3>
+      <ul class="space-y-3.5 text-[.94rem] text-cream/65 border-t border-line pt-6">
+        ${points.map(p => `<li class="flex gap-3"><span class="text-accent mt-0.5 shrink-0">✓</span>${esc(p)}</li>`).join('')}
+      </ul>
+    </article>`).join('');
+}
+
+/* ── assessment weighting table (curriculum.html) ───────────────── */
+if ($('assessmentList')) {
+  $('assessmentList').innerHTML = ASSESSMENT.map(([name, what, weight]) => `
+    <li class="reveal flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 rounded-xl bg-white border border-inkDark/10 px-6 py-5">
+      <span class="font-display text-[1.5rem] leading-none text-brand shrink-0 sm:w-20">${esc(weight)}</span>
+      <span class="flex-1 min-w-0">
+        <span class="block font-display text-[1.02rem] text-inkDark">${esc(name)}</span>
+        <span class="block mt-1 text-[.9rem] text-inkDark/65">${esc(what)}</span>
+      </span>
+    </li>`).join('');
 }
 
 /* ── curriculum preview — titles only, links out (index.html) ───── */
 if ($('modulePreview')) {
-  $('modulePreview').innerHTML = MODULES.map(([title], i) => `
+  $('modulePreview').innerHTML = MODULES.map(([title, , , days], i) => `
     <div class="reveal flex items-center gap-4 rounded-xl bg-white border border-inkDark/10 px-5 py-4">
       <span class="shrink-0 grid place-items-center h-8 w-8 rounded-lg bg-brand/10 text-brand text-[.78rem] font-semibold">${String(i+1).padStart(2,'0')}</span>
-      <span class="font-display text-[.98rem] leading-snug text-inkDark">${esc(title)}</span>
+      <span class="min-w-0">
+        <span class="block text-[.66rem] tracking-[.16em] uppercase text-brand/70 font-semibold">${esc(days)}</span>
+        <span class="block font-display text-[.98rem] leading-snug text-inkDark">${esc(title)}</span>
+      </span>
     </div>`).join('');
 }
 

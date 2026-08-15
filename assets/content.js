@@ -2,30 +2,115 @@
    IDM — ALL SITE COPY LIVES HERE
    Edit the arrays below; every page re-renders itself from them.
    Search for [[TODO ]] for anything still to be confirmed.
+
+   SOURCE OF TRUTH: assets/Course Syllabus.pdf
+   Modules, hours, tools, certifications, the internship phase and the
+   assessment weightings below are transcribed from that document. If the
+   syllabus changes, change it here — not in the HTML.
 ══════════════════════════════════════════════════════════════════ */
 
-const SKILLS = ["Business & Marketing","Branding","Website","SEO","Content Creation",
-  "Social Media","Meta Ads","Google Ads","LinkedIn Ads","Email Marketing",
-  "Business Automation","Analytics","AI Tools","E-commerce","Performance Marketing","Video Editing"];
+/* headline skills, used for the chip cloud */
+const SKILLS = ["AI-First Marketing","Generative AI","Prompt Engineering","SEO","GEO",
+  "Social Media","Google Ads","Meta Ads","Programmatic","Marketing Analytics","GA4",
+  "Email & WhatsApp Automation","AI Agents","No-Code Automation","Martech & CRM",
+  "Conversion Optimisation","Influencer Marketing","E-commerce"];
 
-/* [title, [what's inside]] — order is the module order */
+/* ── THE 12 MODULES ───────────────────────────────────────────────
+   [title, [key topics], tools covered, day range]
+   60 training days · 120 hours · 10 hours per module.
+   ────────────────────────────────────────────────────────────────── */
 const MODULES = [
-  ["Business & Marketing Fundamentals", ["Understand the core of digital marketing strategy","Learn the customer journey & buyer personas","Build a marketing funnel (TOFU, MOFU, BOFU)","Set measurable KPIs & growth goals"]],
-  ["Building a Digital Presence", ["Domain, hosting & CMS setup","Build your first website or landing page","Set up tracking (Google Analytics & Meta Pixel)","Master plugins & essential web tools"]],
-  ["Search Engine Optimization (SEO)", ["On-page, off-page & technical SEO","Keyword research & content optimization","Build high-quality backlinks","Use GSC, SEMrush and Ahrefs"]],
-  ["Content Marketing & Blogging", ["Build a winning content strategy","Write SEO-friendly blog content","Master the AIDA & PAS copy frameworks","Create content that attracts and converts"]],
-  ["Social Media Strategy (SMO)", ["Optimize profiles across every major platform","Create content calendars that convert","Engagement tactics — Reels, polls, stories","Drive organic growth & visibility"]],
-  ["Meta (Facebook & Instagram) Ads", ["Run objective-based ad campaigns","Advanced targeting & pixel setup","Design high-converting creatives","Scale campaigns with smart budgeting"]],
-  ["Google Ads & YouTube Ads", ["Master search, display & video ads","Launch Performance Max campaigns","Track conversions & reduce CPC","Optimize campaigns for maximum ROI"]],
-  ["LinkedIn Ads & B2B Marketing", ["Build powerful B2B campaigns","Target decision-makers effectively","Generate high-quality leads","Nurture & convert with content strategy"]],
-  ["Email Marketing & Automation", ["Build & segment your email list","Create automated workflows","Write high-converting email copy","Use tools like Mailchimp & Klaviyo"]],
-  ["Performance Marketing & ROAS", ["Understand CPC, CPL, ROAS and LTV","Build funnel-based campaign strategies","Run A/B tests to optimize ads","Scale campaigns profitably"]],
-  ["Analytics, Tracking & Reporting", ["Set up GA4, Tag Manager & Looker Studio","Track goals, conversions & key metrics","Build performance dashboards","Turn data into actionable strategy"]],
-  ["E-commerce & Funnel Marketing", ["Launch & optimize online stores","Design product pages that convert","Build full-funnel ad strategies","Upsell, cross-sell & retarget"]],
-  ["Branding & Creative Strategy", ["Visual identity & storytelling","Design ads that stop the scroll","Use Canva & Figma for creatives","Build a memorable brand voice"]],
-  ["Marketing Automation & Tools", ["Workflows with Zapier & HubSpot","Automate lead nurturing & follow-ups","Chatbots & WhatsApp marketing","Personalize campaigns at scale"]],
-  ["Real-World Projects & Case Studies", ["Work on live campaigns & mock clients","Research competitors & build strategy","Analyze real industry case studies","Apply everything you've learned"]],
-  ["Career, Freelancing & Agency Setup", ["Build your portfolio & personal brand","Freelance platforms & how to price","Resume & LinkedIn optimization","Set up your own agency step by step"]],
+  ["Digital Marketing & AI-First Foundations",
+   ["Evolution of marketing: traditional → digital → AI-first",
+    "Digital ecosystem: SEO, SEM, social, content, email, Martech",
+    "Marketing funnels (TOFU–MOFU–BOFU), RACE & AIDA frameworks",
+    "Consumer psychology, the attention economy, platform behaviour",
+    "Business goals, ICP, personas and journey maps",
+    "Live exercise: build a persona & journey map for a real brand"],
+   "ChatGPT · Claude · Miro · Canva", "Days 1–5"],
+
+  ["Generative AI for Marketing",
+   ["Gen AI fundamentals & prompt engineering (zero/few-shot)",
+    "AI content creation: ad copy, blogs, captions, scripts",
+    "AI personalisation at scale; evaluating and editing AI output",
+    "Multi-modal content: text, image, short video",
+    "Live exercise: build a 2-week content calendar, fully AI-drafted"],
+   "ChatGPT · Claude · Gemini · Canva AI · Jasper", "Days 6–10"],
+
+  ["SEO & Generative Engine Optimisation (GEO)",
+   ["SEO fundamentals & ranking systems; on-page, off-page, technical",
+    "Keyword research & search-intent mapping with AI",
+    "Programmatic SEO using AI; content optimisation workflows",
+    "Generative Engine Optimisation — ranking inside ChatGPT and Google AI Overviews",
+    "Live exercise: full SEO audit + AI-assisted content brief for a client site"],
+   "Google Search Console · Ahrefs/Ubersuggest · SurferSEO · ChatGPT", "Days 11–15"],
+
+  ["Social Media Marketing & AI Content Engines",
+   ["Platform algorithms: Instagram, LinkedIn, YouTube, Facebook",
+    "Content strategy, calendars, engagement & virality mechanics",
+    "AI-powered content generation and scheduling systems",
+    "Influencer collaboration, UGC & community building basics",
+    "Live exercise: run a 2-week organic social sprint for a live page"],
+   "Meta Business Suite · Canva · Hootsuite/Buffer · ChatGPT", "Days 16–20"],
+
+  ["Performance Marketing — Google Ads & Meta Ads",
+   ["Campaign structure, keyword & audience targeting",
+    "AI-generated ad copy and creatives; budget & bid strategy",
+    "Retargeting, lookalike audiences, performance tracking",
+    "Live exercise: launch and optimise a live/simulated ad campaign"],
+   "Google Ads · Meta Ads Manager · AdCreative.ai", "Days 21–25"],
+
+  ["Programmatic Advertising & Marketing Analytics",
+   ["DSP ecosystem, real-time bidding, dynamic creative optimisation",
+    "Cross-device targeting, brand safety & fraud prevention basics",
+    "GA4 setup, event tracking, dashboards & attribution models",
+    "Live exercise: build a GA4 + Looker Studio performance dashboard",
+    "Month 1 milestone: mini-project presentation"],
+   "Display & Video 360 · GA4 · Looker Studio · Hotjar", "Days 26–30"],
+
+  ["Email, WhatsApp & Lifecycle Marketing Automation",
+   ["Lifecycle funnels (acquisition → retention); segmentation",
+    "Email campaign design, drip workflows, AI personalisation",
+    "WhatsApp/SMS automation for Indian D2C and local business",
+    "Live exercise: build a 5-email automated nurture sequence"],
+   "Mailchimp · HubSpot · WATI/AiSensy", "Days 31–35"],
+
+  ["Marketing Automation & AI Agents",
+   ["AI agents vs. workflows; planning, memory & tool-use concepts",
+    "No-code automation: triggers, actions, multi-step workflows",
+    "Building an AI marketing agent for content, reporting and alerts",
+    "Human-in-the-loop guardrails, risks and limitations",
+    "Live exercise: build and deploy a working no-code AI marketing agent"],
+   "Zapier · Make · ChatGPT/Claude API basics", "Days 36–40"],
+
+  ["Martech Stack, CRM & Customer Data",
+   ["Martech ecosystem overview: CRM, CDP and DMP concepts",
+    "First-party vs third-party data, privacy & consent in a cookieless world",
+    "CRM-based lifecycle automation and lead scoring",
+    "Vendor evaluation basics; designing a simple Martech stack",
+    "Live exercise: map a CRM-driven customer journey for a business"],
+   "Salesforce/HubSpot CRM · Google Analytics", "Days 41–45"],
+
+  ["Conversion Rate Optimisation & Landing Pages",
+   ["Funnel analysis, A/B testing & experimentation frameworks",
+    "AI-powered heatmaps and user-behaviour insights",
+    "Landing page design, copywriting & no-code page building",
+    "Live exercise: design, launch and A/B test a landing page"],
+   "Hotjar · VWO/Optimizely · WordPress/Shopify · Canva", "Days 46–50"],
+
+  ["Influencer, Community Growth & E-commerce",
+   ["Influencer identification, evaluation & campaign structuring",
+    "Community building, social listening & sentiment analysis",
+    "E-commerce and D2C basics: marketplaces, listings, retention",
+    "Live exercise: build a micro-influencer outreach and UGC plan"],
+   "Upfluence/HypeAuditor · Shopify", "Days 51–55"],
+
+  ["Capstone Project, Portfolio & Career Prep",
+   ["One end-to-end AI-powered campaign: strategy → content → ads → automation → analytics",
+    "Resume, LinkedIn profile and portfolio building",
+    "Mock interviews and client-facing communication practice",
+    "Month 2 milestone: capstone presentation to a review panel"],
+   "Every tool covered in the programme", "Days 56–60"],
 ];
 
 /* ── "WHAT YOU ACTUALLY LEARN" — the five layers, home page ────────
@@ -71,89 +156,118 @@ const JOURNEY = [
    "Projects, internship, capstone & portfolio."],
 ];
 
+/* ── THE INTERNSHIP — months 3 and 4 ──────────────────────────────
+   [phase, weeks, [what you do]]
+   ────────────────────────────────────────────────────────────────── */
+const INTERNSHIP = [
+  ["Applied Foundations", "Month 3 · Weeks 1–4",
+   ["Onboarding onto a live client or in-house brand account",
+    "Own the SEO and social content calendar for one real brand, end to end",
+    "Assist on live Google and Meta Ads campaigns under mentor review",
+    "Weekly reporting through GA4 and Looker Studio dashboards"]],
+  ["Ownership & Specialisation", "Month 4 · Weeks 5–8",
+   ["Independently run one channel — SEO, paid, social or automation — on a live account",
+    "Build and ship one automation or AI-agent workflow used in production",
+    "Prepare a full campaign performance review with optimisation recommendations",
+    "Final internship presentation, performance appraisal and career support"]],
+];
+
+/* ── HOW YOU ARE ASSESSED ─────────────────────────────────────────
+   [component, what it is, weighting]
+   ────────────────────────────────────────────────────────────────── */
+const ASSESSMENT = [
+  ["Attendance & Participation", "Minimum 80% attendance across the live sessions", "10%"],
+  ["Weekly Assignments & Quizzes", "12 graded module-end assignments", "25%"],
+  ["Month 1 Mini-Project", "A live or simulated ad campaign plus an analytics dashboard", "15%"],
+  ["Capstone Project", "End-to-end AI marketing campaign and presentation", "25%"],
+  ["Internship Performance", "Mentor evaluation across months 3 and 4", "25%"],
+];
+
 const FAQS = [
   ["What makes IDM different from other digital marketing courses?",
-   "Most courses hand you recorded lectures and a certificate. This is a live online, execution-first program run out of a working agency — every session is delivered live, and you spend most of your time actually building campaigns, with mentors reviewing your work."],
+   "Most courses still teach a 2019 syllabus — Facebook Ads, basic SEO, a bit of Canva — while agencies have moved to AI-first, automation-driven teams. Here, ads are one module out of twelve. AI, automation and Martech are the core, and the certificate only comes after a live capstone and real internship deliverables."],
+  ["How long is the programme, and how is it structured?",
+   "Four months in total: a 60-day practical bootcamp of 120 live hours, then a 2-month internship. The bootcamp runs 2 hours a day, 5 days a week, as 12 modules of 5 days and 10 hours each."],
+  ["What does a typical week look like?",
+   "Day 1 is a concept session with a live demo. Day 2 is a guided hands-on lab on the same topic. Day 3 is tool-specific practice and a mini-task. Day 4 applies it to a real or simulated brand. Day 5 is review, doubt-clearing and a module assessment. Two hours a day, every day."],
   ["Is this course beginner-friendly?",
-   "Yes. We assume zero marketing background and start from fundamentals. What we do expect is that you show up live for the sessions and do the campaign work between them — the programme only works if you execute."],
-  ["How long is the course, and what's the format?",
-   "18 weeks, fully online and fully live — no recorded lectures. 120 hours of live training in total, roughly 7 hours a week, split between expert-led sessions, mentor-assisted work and supervised practice. [[TODO: confirm the session days and timings.]]"],
-  ["Will I get a certificate after completion?",
-   "Yes — you receive a completion certificate. Far more useful, though, is the portfolio of live campaign work you'll have built by the end."],
-  ["Will I get practical experience during the course?",
-   "That's the whole point. You'll work on real client campaigns with real budgets from the early weeks onward, not simulated exercises."],
-  ["Do you offer internships or placement assistance?",
-   "[[TODO: state exactly what you offer, and promise only what you can contractually deliver. Vague placement guarantees are a common source of consumer complaints.]]"],
-  ["What tools and platforms will I learn?",
-   "Meta Ads Manager, Google Ads, GA4, Google Tag Manager, Looker Studio, Search Console, SEMrush/Ahrefs, Mailchimp or Klaviyo, Zapier, HubSpot, Canva and Figma — plus current AI tooling."],
+   "Yes — we start from fundamentals and assume no marketing background. The only entry requirement is that you are genuinely willing to do the work: there is 80% minimum attendance, graded assignments, a capstone review panel and mentor sign-off."],
+  ["Is the internship guaranteed, and is it real work?",
+   "The 2-month internship is part of the programme, not an optional add-on. You work on live client or in-house brand accounts under mentor supervision, with weekly deliverables, a final presentation to faculty and a client stakeholder, and a performance appraisal."],
+  ["Do you offer placement assistance?",
+   "You get structured career support: resume and LinkedIn work, portfolio building, mock interviews, client-facing communication practice, and an internship-to-opportunity pipeline. [[TODO: state exactly what you commit to beyond this, and only what your enrolment agreement can back.]]"],
+  ["What certifications will I actually hold at the end?",
+   "The IDM Certificate of Completion and an Internship Certificate, plus guided support to earn 30+ free third-party certifications from Google, HubSpot, Meta, Semrush and HP LIFE. Those are issued by the platforms themselves at no cost — our job is making sure you actually finish them."],
+  ["What tools will I learn?",
+   "Over 100, hands-on: 50+ AI tools including ChatGPT, Claude, Gemini, Midjourney, n8n, Zapier, Make and Synthesia, and 50+ marketing and Martech platforms including Google Ads, GA4, Looker Studio, Ahrefs, SEMrush, HubSpot, Klaviyo, Salesforce and Shopify. The list is reviewed every batch."],
   ["Can I join if I'm a student or a working professional?",
-   "Both. At roughly 7 hours of live training a week over 18 weeks, it is built to run alongside a job or a degree. [[TODO: confirm the session days and timings — evenings, weekends, or both.]]"],
-  ["How can I enroll in the program?",
-   "Submit the application form on this page and pay the registration fee. Shortlisted applicants are interviewed, and the program fee is only payable after you're selected."],
-  ["What support will I get after completing the course?",
-   "[[TODO: describe your alumni support — community access, refresher sessions, job referrals, etc.]]"],
+   "Both. Sessions are 2 hours a day, 5 days a week, so it is built to run alongside a job or a degree. [[TODO: confirm the session timings — evenings, weekends, or both.]]"],
+  ["How do I get a certificate?",
+   "Minimum 80% attendance in the practical phase, a successful capstone submission, and a satisfactory internship mentor sign-off. There is no certificate without the work."],
+  ["How can I enroll in the programme?",
+   "Submit the application form on this page and pay the registration fee. Shortlisted applicants are interviewed, and the programme fee is only payable after you're selected."],
 ];
 
 /* ── CAREER PAGE ──────────────────────────────────────────────────
    Roles the program is built to prepare you for.
-   `salary` is deliberately left as a TODO: publish a range only if you
-   can point to a source (Glassdoor / AmbitionBox / your own placements).
+   Publish a salary range only if you can point to a source
+   (Glassdoor / AmbitionBox / your own placements).
    ────────────────────────────────────────────────────────────────── */
 const ROLES = [
   ["Performance Marketing Executive",
    "Own paid campaigns end to end — budgets, targeting, creative testing and the ROAS number the business is judged on.",
-   ["Meta Ads","Google Ads","A/B testing","Budget scaling"]],
-  ["SEO Specialist",
-   "Grow organic traffic through technical fixes, keyword strategy and content that actually ranks and converts.",
-   ["Technical SEO","Keyword research","GSC","Ahrefs / SEMrush"]],
+   ["Google Ads","Meta Ads","AdCreative.ai","Bid strategy"]],
+  ["SEO & GEO Specialist",
+   "Grow organic visibility across search and, increasingly, inside AI answers — technical fixes, intent mapping and content that ranks.",
+   ["Technical SEO","GEO","Search Console","Ahrefs / SurferSEO"]],
   ["Social Media Manager",
    "Run a brand's presence across platforms — calendar, creative direction, community and the growth that follows.",
-   ["Content calendars","Reels & shorts","Community","Organic growth"]],
-  ["Content Marketer",
-   "Turn positioning into blogs, landing pages and campaigns that pull qualified traffic instead of vanity views.",
-   ["Copy frameworks","Blog SEO","Landing pages","Storytelling"]],
-  ["Email & Automation Specialist",
-   "Build the lifecycle nobody sees but everybody feels — segmentation, flows and follow-ups that recover revenue.",
-   ["Klaviyo / Mailchimp","Segmentation","Zapier","HubSpot"]],
+   ["Meta Business Suite","Content calendars","Hootsuite","UGC"]],
+  ["AI Content Strategist",
+   "Produce at a volume a manual team cannot match, without sounding like a machine — prompt systems, editing and brand voice.",
+   ["Prompt engineering","Jasper","Canva AI","Multi-modal"]],
+  ["Marketing Automation Specialist",
+   "Build the lifecycle nobody sees but everybody feels — segmentation, drip flows, WhatsApp journeys and AI agents that run themselves.",
+   ["Zapier","Make","n8n","HubSpot","WATI"]],
   ["Marketing Analyst",
    "Wire up the tracking, build the dashboards and tell the team what the data is actually saying.",
-   ["GA4","Tag Manager","Looker Studio","Attribution"]],
-  ["Brand & Creative Strategist",
-   "Shape how a brand looks and sounds, then translate that into creative that stops the scroll.",
-   ["Visual identity","Ad creative","Canva / Figma","Brand voice"]],
-  ["Freelance Digital Marketer",
-   "Run your own client roster — with the pricing, proposals and delivery systems taught explicitly in Module 16.",
-   ["Pricing","Proposals","Client comms","Retainers"]],
-  ["Agency Founder",
-   "Productise what you've learned and build a team around it. You'll have seen an agency run from the inside for 18 weeks.",
-   ["Service design","Hiring","Ops","Sales"]],
+   ["GA4","Looker Studio","Attribution","Hotjar"]],
+  ["Martech / CRM Executive",
+   "Own the stack itself — CRM, customer data, lead scoring and the privacy rules that now govern all of it.",
+   ["HubSpot","Salesforce","CDP concepts","Lead scoring"]],
+  ["CRO Specialist",
+   "Turn existing traffic into more revenue through funnel analysis, experimentation and landing pages that actually convert.",
+   ["A/B testing","Hotjar","VWO","Landing pages"]],
+  ["Freelancer or Agency Founder",
+   "Run your own client roster or build a team around it — with a live portfolio and a shipped AI agent to point at.",
+   ["Portfolio","Pricing","Client comms","Retainers"]],
 ];
 
-/* The three routes out of the program. */
+/* The three routes out of the programme. */
 const PATHS = [
   ["Get Hired",
-   "Join an agency or an in-house marketing team as a junior-to-mid marketer — with campaign work already in your portfolio.",
-   ["Portfolio of live campaign results","Resume & LinkedIn rebuilt with you","Mock interviews with practising marketers","Introductions to hiring teams — [[TODO: describe exactly what you do here]]"]],
+   "Join an agency or an in-house marketing team — with a capstone campaign, a shipped AI agent and two months on live accounts already behind you.",
+   ["A capstone campaign presented to a review panel","30+ verifiable third-party certifications","Resume, LinkedIn and portfolio built with you","Mock interviews and client-communication practice"]],
   ["Go Freelance",
    "Build an independent client base. We cover the unglamorous half — scoping, pricing, contracts and getting paid on time.",
    ["How to price work without underselling","Proposals and scoping that hold up","Finding your first three clients","Delivering solo without burning out"]],
   ["Build Your Own",
-   "Start your own agency or grow your own venture using the same systems you spent 18 weeks running.",
+   "Start your own agency or grow your own venture using the same stack you spent four months running.",
    ["Positioning and service design","Productised offers and retainers","When and how to make your first hire","Ops and reporting that scale"]],
 ];
 
-/* What actually happens on the career side of the program. */
+/* What actually happens on the career side of the programme. */
 const SUPPORT = [
-  ["Portfolio Reviews",
-   "Your live campaign work is packaged into case studies that stand up in an interview — reviewed line by line with a mentor."],
+  ["Capstone Review Panel",
+   "Your final campaign is presented to an internal panel — strategy, content, ads, automation and analytics, defended out loud."],
+  ["Portfolio Building",
+   "Module 12 is dedicated to it. Live campaign work and your shipped AI agent are packaged into something a hiring manager can actually open."],
   ["Resume & LinkedIn",
-   "Rewritten around outcomes and metrics rather than course titles, because that is what hiring managers scan for."],
+   "Rebuilt around outcomes and the 30+ third-party certifications you will be holding, because that is what recruiters filter on."],
   ["Mock Interviews",
-   "Practice rounds with marketers who sit on the other side of the table — including the case-study and metrics questions."],
-  ["Interview Preparation",
-   "Platform-specific drills on Meta, Google and GA4 so you can answer the practical questions, not just the theory ones."],
-  ["Hiring Introductions",
-   "[[TODO: describe precisely what you provide — referrals? a shared candidate pool? Only claim what you can deliver.]]"],
-  ["Alumni Network",
-   "[[TODO: describe your alumni community, refresher access and ongoing support, or remove this card.]]"],
+   "Practice rounds plus client-facing communication drills, so the first time you explain your ROAS number is not in a real interview."],
+  ["Live Account Experience",
+   "Two months on real client or in-house brand accounts with mentor sign-off and a performance appraisal — not a simulated task list."],
+  ["Internship-to-Opportunity Pipeline",
+   "Strong interns are routed toward openings as they arise. [[TODO: describe precisely what this commits IDM to, and what it does not.]]"],
 ];
