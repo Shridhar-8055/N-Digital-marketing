@@ -308,3 +308,132 @@ if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
     });
   });
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   BROCHURE — gated download
+   Any element with [data-brochure] opens the modal. The file only
+   downloads after the form is submitted, so every download is a
+   captured lead.
+══════════════════════════════════════════════════════════════════ */
+/* [[TODO: drop the brochure PDF at this path. Until it exists the modal
+   tells the user it is on its way and still records the lead, rather
+   than handing them a broken download. ]] */
+const BROCHURE_FILE = 'public/IDM-Programme-Brochure.pdf';
+/* [[TODO: LEAD ENDPOINT — Formspree / Web3Forms / your own handler.
+   While this is empty the details are NOT sent anywhere: the download
+   still works, but you lose the lead, which is the entire point of
+   gating it. ]] */
+const BROCHURE_ENDPOINT = '';
+
+if (document.querySelector('[data-brochure]')) {
+  const dlg = document.createElement('dialog');
+  dlg.id = 'brochureModal';
+  dlg.className = 'modal';
+  dlg.innerHTML = `
+    <button class="modal-x" type="button" aria-label="Close">&times;</button>
+    <p class="eyebrow mb-3">Programme brochure</p>
+    <h2 class="font-display text-[1.5rem] sm:text-[1.8rem] leading-snug mb-2">Get the Full Brochure</h2>
+    <p class="text-[.94rem] text-cream/65 leading-relaxed mb-7">
+      The complete 12-module syllabus, the tool list, the internship
+      structure and the fee — as a PDF. Tell us where to send it.
+    </p>
+
+    <form id="brochureForm" novalidate>
+      <label class="modal-label" for="b-name">Name</label>
+      <input class="modal-input" id="b-name" name="name" type="text" required autocomplete="name">
+
+      <label class="modal-label" for="b-email">Email</label>
+      <input class="modal-input" id="b-email" name="email" type="email" required autocomplete="email">
+
+      <label class="modal-label" for="b-phone">Phone</label>
+      <input class="modal-input" id="b-phone" name="phone" type="tel" required autocomplete="tel"
+             inputmode="tel" pattern="[0-9+()\s-]{7,}">
+
+      <p id="brochureError" class="modal-error" hidden></p>
+      <button class="btn-primary w-full rounded-full px-8 py-4 font-semibold mt-6" type="submit">
+        Download Brochure
+      </button>
+      <p class="text-[.76rem] text-cream/45 text-center mt-4">
+        We'll only use your details to contact you about this programme.
+      </p>
+    </form>
+
+    <div id="brochureDone" class="text-center py-6" hidden>
+      <p class="font-display text-[1.2rem] text-accent mb-2">Thanks — check your downloads.</p>
+      <p class="text-[.92rem] text-cream/65" id="brochureDoneMsg"></p>
+    </div>`;
+  document.body.appendChild(dlg);
+
+  const form   = dlg.querySelector('#brochureForm');
+  const errBox = dlg.querySelector('#brochureError');
+  const done   = dlg.querySelector('#brochureDone');
+  const doneMsg= dlg.querySelector('#brochureDoneMsg');
+  const submit = form.querySelector('button[type=submit]');
+
+  const open = () => {
+    errBox.hidden = true; done.hidden = true; form.hidden = false;
+    submit.disabled = false; submit.textContent = 'Download Brochure';
+    dlg.showModal();
+    dlg.querySelector('#b-name').focus();
+  };
+  document.querySelectorAll('[data-brochure]').forEach(el =>
+    el.addEventListener('click', e => { e.preventDefault(); open(); }));
+
+  dlg.querySelector('.modal-x').addEventListener('click', () => dlg.close());
+  /* click on the backdrop (i.e. outside the panel) closes it */
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+
+  const fail = msg => { errBox.textContent = msg; errBox.hidden = false; };
+
+  /* Fires the download. Returns false when the file is not there yet, so
+     the user is told the truth instead of being handed a 404. */
+  const deliver = async () => {
+    try {
+      const res = await fetch(BROCHURE_FILE, {method: 'HEAD'});
+      if (!res.ok) return false;
+    } catch {
+      /* file:// or an opaque response — can't probe, so just try it */
+    }
+    const a = document.createElement('a');
+    a.href = BROCHURE_FILE;
+    a.download = 'IDM-Programme-Brochure.pdf';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    return true;
+  };
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    errBox.hidden = true;
+
+    if (!form.checkValidity()) {
+      fail('Please fill in your name, a valid email and a phone number.');
+      form.reportValidity();
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = 'Preparing…';
+
+    const data = new FormData(form);
+    data.append('source', 'brochure-download');
+    data.append('page', location.pathname.split('/').pop() || 'index.html');
+
+    if (BROCHURE_ENDPOINT) {
+      try {
+        await fetch(BROCHURE_ENDPOINT, {method: 'POST', body: data});
+      } catch {
+        /* Never block the download on the lead POST failing — the user
+           did their part, and a lost lead is our problem, not theirs. */
+      }
+    }
+
+    const sent = await deliver();
+    form.hidden = true;
+    done.hidden = false;
+    doneMsg.textContent = sent
+      ? "Your brochure is downloading. We'll be in touch shortly."
+      : "The brochure is being finalised — we'll email it to you as soon as it's ready.";
+  });
+}
