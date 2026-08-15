@@ -35,9 +35,9 @@ if ($('storyTrack')) {
     + `
     <article class="story story-cta">
       <p class="text-[.95rem] text-inkDark/70 mb-5">Want to see more inspiring stories?</p>
-      <a href="career.html" class="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-[.9rem] font-semibold">
+      <button type="button" data-lead="placement" class="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-[.9rem] font-semibold">
         View All Success Stories <span aria-hidden="true">&rarr;</span>
-      </a>
+      </button>
     </article>`;
 
   /* the small stack of faces above the carousel */
@@ -376,11 +376,13 @@ if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   LEAD MODAL — two variants, one dialog
-   [data-brochure] opens the brochure variant, which hands over the PDF
-   once the form is submitted. The 5s timed popup opens a general enquiry
-   variant instead: same fields, same sheet, no download. VARIANTS below
-   holds the copy for each.
+   LEAD MODAL — three variants, one dialog
+     brochure-button  hands over the PDF once the form is submitted
+     auto-popup       the 5s timed general enquiry, no download
+     placement        the carousel's "View All Success Stories" card
+   All three share the fields and the sheet; VARIANTS holds the copy and
+   whether a file is delivered. A trigger names its variant with
+   data-lead, or uses data-brochure as shorthand for the first.
 ══════════════════════════════════════════════════════════════════ */
 /* The 10-page course syllabus. Renamed off "IDM course syllabus.pdf" —
    spaces in a filename have to be percent-encoded in every reference, and
@@ -434,6 +436,16 @@ const VARIANTS = {
     doneTitle:'Thanks, check your downloads.',
     doneBody: "Your brochure is downloading. We'll be in touch shortly.",
   },
+  'placement': {
+    eyebrow:  'Placement support',
+    title:    'See Where Our Learners Landed',
+    body:     'Leave your details and our placement team will share the full list of roles, companies and packages, and walk you through how the support actually works.',
+    cta:      'Request Placement Details',
+    working:  'Sending…',
+    download: false,
+    doneTitle:"Thanks, we've got your details.",
+    doneBody: 'Our team will reach out to you within 24 hours.',
+  },
   'auto-popup': {
     eyebrow:  'Talk to a mentor',
     title:    'Have a Question First?',
@@ -446,7 +458,7 @@ const VARIANTS = {
   },
 };
 
-if (document.querySelector('[data-brochure]')) {
+if (document.querySelector('[data-brochure], [data-lead]')) {
   const dlg = document.createElement('dialog');
   dlg.id = 'brochureModal';
   dlg.className = 'modal';
@@ -500,8 +512,13 @@ if (document.querySelector('[data-brochure]')) {
     dlg.showModal();
     dlg.querySelector('#b-name').focus();
   };
-  document.querySelectorAll('[data-brochure]').forEach(el =>
-    el.addEventListener('click', e => { e.preventDefault(); open('brochure-button'); }));
+  /* [data-lead="<variant>"] picks the copy; [data-brochure] is the
+     brochure shorthand and stays as it was. */
+  document.querySelectorAll('[data-brochure], [data-lead]').forEach(el =>
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      open(el.dataset.lead || 'brochure-button');
+    }));
 
   /* ── timed popup ──────────────────────────────────────────────────
      Opens once, 5s in. The rules exist so it never becomes a nuisance:

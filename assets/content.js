@@ -42,7 +42,7 @@ const STORIES = [
    "Fresher", "Social Media Manager", "3.8 LPA"],
   ["Meera Krishnan",   "public/stories/s4.jpg", "#8d1b1b", "Trailhead Growth",
    "Fresher", "Marketing Automation Specialist", "5.0 LPA"],
-  ["Aditya Shetty",    "public/stories/s5.jpg", "#700c0c", "Meridian Commerce",
+  ["Vishal Nair",      "public/stories/s5.jpg", "#700c0c", "Meridian Commerce",
    "Fresher", "Marketing Analyst", "4.2 LPA"],
   ["Nithya Balan",     "public/stories/s6.jpg", "#6b0f0f", "Papercup Studio",
    "Fresher", "AI Content Strategist", "3.6 LPA"],
