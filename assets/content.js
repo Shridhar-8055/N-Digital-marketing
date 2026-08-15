@@ -282,13 +282,13 @@ const ROLES = [
 
 /* The three routes out of the programme. */
 const PATHS = [
-  ["Get Hired",
-   "Join an agency or an in-house marketing team — with a capstone campaign, a shipped AI agent and two months on live accounts already behind you.",
+  ["Get Your Dream Job",
+   "Walk into interviews with something to show: a capstone campaign defended to a panel, a shipped AI agent, and two months on live client accounts. Not a certificate and a hope.",
    ["A capstone campaign presented to a review panel","30+ verifiable third-party certifications","Resume, LinkedIn and portfolio built with you","Mock interviews and client-communication practice"]],
-  ["Go Freelance",
+  ["Start Your Freelancing Journey",
    "Build an independent client base. We cover the unglamorous half — scoping, pricing, contracts and getting paid on time.",
    ["How to price work without underselling","Proposals and scoping that hold up","Finding your first three clients","Delivering solo without burning out"]],
-  ["Build Your Own",
+  ["Build Your Own Agency",
    "Start your own agency or grow your own venture using the same stack you spent four months running.",
    ["Positioning and service design","Productised offers and retainers","When and how to make your first hire","Ops and reporting that scale"]],
 ];
