@@ -453,8 +453,13 @@ if (document.querySelector('[data-brochure]')) {
       window[area].setItem(key, val);
     } catch { return null; }
   };
-  const handled = () =>
-    store('localStorage', DONE_KEY) === '1' || store('sessionStorage', SEEN_KEY) === '1';
+  /* ?popup on the URL forces it open regardless of the flags. Once you
+     submit the form the "submitted" flag is permanent for that device,
+     so without an override there is no way to see the popup again short
+     of clearing site data — which makes it impossible to demo. */
+  const forced = new URLSearchParams(location.search).has('popup');
+  const handled = () => !forced &&
+    (store('localStorage', DONE_KEY) === '1' || store('sessionStorage', SEEN_KEY) === '1');
 
   const autoOpen = () => {
     if (dlg.open || handled()) return;
