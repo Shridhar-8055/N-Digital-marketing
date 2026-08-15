@@ -204,10 +204,8 @@ if ($('year')) $('year').textContent = new Date().getFullYear();
 /* sticky nav goes solid once you scroll */
 const nav = $('nav');
 if (nav) {
-  const onScroll = () => {
-    const stuck = scrollY > 20;
-    ['bg-ink/90','backdrop-blur-xl','border-b','border-line'].forEach(c => nav.classList.toggle(c, stuck));
-  };
+  /* the bar is glass at all times; scrolling just thickens it */
+  const onScroll = () => nav.classList.toggle('is-stuck', scrollY > 20);
   addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 }
