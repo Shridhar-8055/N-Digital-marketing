@@ -315,10 +315,10 @@ if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
    downloads after the form is submitted, so every download is a
    captured lead.
 ══════════════════════════════════════════════════════════════════ */
-/* [[TODO: drop the brochure PDF at this path. Until it exists the modal
-   tells the user it is on its way and still records the lead, rather
-   than handing them a broken download. ]] */
-const BROCHURE_FILE = 'public/IDM-Programme-Brochure.pdf';
+/* The 10-page course syllabus. Renamed off "IDM course syllabus.pdf" —
+   spaces in a filename have to be percent-encoded in every reference, and
+   one missed escape is a silent 404. */
+const BROCHURE_FILE = 'public/IDM-Course-Syllabus.pdf';
 /* [[TODO: LEAD ENDPOINT — Formspree / Web3Forms / your own handler.
    While this is empty the details are NOT sent anywhere: the download
    still works, but you lose the lead, which is the entire point of
@@ -385,8 +385,9 @@ if (document.querySelector('[data-brochure]')) {
 
   const fail = msg => { errBox.textContent = msg; errBox.hidden = false; };
 
-  /* Fires the download. Returns false when the file is not there yet, so
-     the user is told the truth instead of being handed a 404. */
+  /* Fires the download. Still HEAD-probes first: if the file is ever
+     moved or a deploy drops it, the user gets an honest message rather
+     than a broken file. */
   const deliver = async () => {
     try {
       const res = await fetch(BROCHURE_FILE, {method: 'HEAD'});
@@ -396,7 +397,7 @@ if (document.querySelector('[data-brochure]')) {
     }
     const a = document.createElement('a');
     a.href = BROCHURE_FILE;
-    a.download = 'IDM-Programme-Brochure.pdf';
+    a.download = 'IDM-Course-Syllabus.pdf';
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -434,6 +435,6 @@ if (document.querySelector('[data-brochure]')) {
     done.hidden = false;
     doneMsg.textContent = sent
       ? "Your brochure is downloading. We'll be in touch shortly."
-      : "The brochure is being finalised — we'll email it to you as soon as it's ready.";
+      : "We couldn't reach the file just now — we'll email the syllabus to you shortly.";
   });
 }
