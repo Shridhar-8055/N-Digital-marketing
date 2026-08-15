@@ -24,8 +24,11 @@ const CONTACT = {
   phoneLabel: '+91 96063 02009',
   tel:        '+919606302009',
   whatsapp:   '919606302009',
-  email:      '',            /* [[TODO: support@ address]] */
-  address:    '',            /* [[TODO: office address]]  */
+  /* [[TODO: ".iin" is not a real top-level domain. If this should be
+     admissions@idmacademy.in, correct it here — as written, every reply
+     a prospect sends will bounce. ]] */
+  email:      'admissions@idmacademy.iin',
+  address:    '587, 3rd Floor, 100 Feet Rd, Dwarakanagar, opposite Mariya Mart, Vajarahalli, Talaghattapura, Bengaluru, Karnataka 560062',
 };
 
 const SOCIALS = [
