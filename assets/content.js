@@ -148,7 +148,7 @@ const MODULES = [
 const LAYERS = [
   ["01", "Marketing",
    ["Digital Marketing Foundations","Customer Psychology","Funnels","Research","Branding","Strategy"],
-   "public/layers/01-marketing.jpg"],
+   "public/layers/01-marketing-portrait.jpg"],
   ["02", "Acquisition",
    ["SEO","GEO","Social Media","Google Ads","Meta Ads","Programmatic Advertising"],
    "public/layers/02-acquisition.jpg"],

@@ -9,11 +9,16 @@
 const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $   = id => document.getElementById(id);
 
-/* ── skill chips ────────────────────────────────────────────────── */
-if ($('skillChips')) {
-  $('skillChips').innerHTML = SKILLS.map(s =>
-    `<span class="rounded-full border border-line bg-surface px-5 py-2.5 text-[.9rem] text-cream/70 hover:border-brandLift hover:text-cream transition-colors">${esc(s)}</span>`
-  ).join('');
+/* ── skill chips — two counter-scrolling rows ───────────────────── */
+if ($('skillRowA') || $('skillRowB')) {
+  const chip = t => `<span class="skill-chip">${esc(t)}</span>`;
+  const fillSkills = (el, list) => {
+    const set = list.map(chip).join('');
+    el.innerHTML = `<div class="marquee-set">${set}</div><div class="marquee-set" aria-hidden="true">${set}</div>`;
+  };
+  const half = Math.ceil(SKILLS.length / 2);
+  if ($('skillRowA')) fillSkills($('skillRowA'), SKILLS.slice(0, half));
+  if ($('skillRowB')) fillSkills($('skillRowB'), SKILLS.slice(half));
 }
 
 /* ── placement marquee — two rows, opposite directions ──────────── */
@@ -24,7 +29,7 @@ if ($('logoRowA') || $('logoRowB')) {
      hidden from screen readers so each brand is announced once */
   const fill = (el, list) => {
     const set = list.map(tile).join('');
-    el.innerHTML = `<div class="logo-row">${set}</div><div class="logo-row" aria-hidden="true">${set}</div>`;
+    el.innerHTML = `<div class="marquee-set">${set}</div><div class="marquee-set" aria-hidden="true">${set}</div>`;
   };
   const mid = Math.ceil(LOGOS.length / 2);
   if ($('logoRowA')) fill($('logoRowA'), LOGOS.slice(0, mid));

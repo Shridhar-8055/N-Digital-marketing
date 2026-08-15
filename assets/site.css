@@ -65,7 +65,15 @@ h1,h2,h3,.font-display{font-family:'Sanchez',Georgia,serif;}
    sync up into looking like one block */
 .marquee-track.reverse{animation-direction:reverse;animation-duration:52s;}
 .marquee:hover .marquee-track{animation-play-state:paused;}
-.logo-row{display:flex;gap:1rem;flex:0 0 auto;padding-right:1rem;}
+.marquee-set{display:flex;gap:1rem;flex:0 0 auto;padding-right:1rem;}
+
+.skill-chip{
+  flex:0 0 auto;white-space:nowrap;
+  border-radius:9999px;padding:.65rem 1.35rem;font-size:.9rem;
+  background:var(--surface);border:1px solid var(--line);color:rgba(248,247,242,.72);
+  transition:border-color .25s ease,color .25s ease,background .25s ease;
+}
+.skill-chip:hover{border-color:var(--brand-lift);color:var(--cream);background:rgba(156,17,17,.14);}
 
 /* white tiles: four of the brand marks are dark or red ink, which would
    disappear against the maroon if set bare on the background */
