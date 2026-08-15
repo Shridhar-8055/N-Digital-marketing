@@ -120,27 +120,39 @@ details[open] .chev{transform:rotate(45deg);}
   .journey-step:hover .journey-dot{transform:none;}
 }
 
-/* ── "five layers" — expanding-panel accordion ──────────────────────
-   Below 1024px this is a plain stack of cards with a hover lift.
-   From 1024px up it becomes the accordion: five narrow panels, the
-   hovered one widens to full colour while the rest recede. With
-   nothing hovered, panel 01 sits open so the row never looks dead.
+/* ── "five layers" — image panels, expanding accordion ─────────────
+   Backgrounds come from the 4th field of each LAYERS row in content.js.
+   Below 1024px: a stack of image cards, content always visible.
+   From 1024px up: the accordion. Collapsed panels wash their image out
+   to near-white and print the name up the spine in maroon; the open one
+   restores full colour under a scrim and carries cream type — which is
+   the behaviour in the reference.
    ─────────────────────────────────────────────────────────────────── */
 .layers{display:flex;flex-direction:column;gap:1rem;}
 
 .layer{
-  position:relative;overflow:hidden;border-radius:1rem;
-  background:#fff;border:1px solid rgba(26,20,20,.10);padding:1.5rem;
+  position:relative;overflow:hidden;border-radius:1rem;isolation:isolate;
+  border:1px solid rgba(26,20,20,.10);padding:1.5rem;
   transition:transform .3s cubic-bezier(.2,.7,.3,1),
              box-shadow .3s ease,border-color .3s ease;
 }
+.layer-bg{
+  position:absolute;inset:0;z-index:-2;
+  background-color:var(--bg);background-size:cover;background-position:center;
+  transition:filter .55s ease,transform .8s cubic-bezier(.2,.7,.3,1);
+}
+.layer-scrim{
+  position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(26,5,5,.30) 0%,rgba(26,5,5,.80) 62%,rgba(26,5,5,.93) 100%);
+  transition:opacity .45s ease;
+}
 .layer:hover{
   transform:translateY(-4px);
-  border-color:rgba(122,0,0,.35);
-  box-shadow:0 22px 48px -24px rgba(122,0,0,.45);
+  border-color:rgba(122,0,0,.45);
+  box-shadow:0 22px 48px -24px rgba(122,0,0,.55);
 }
 
-/* brand rail that wipes down the leading edge */
+/* brand rail down the leading edge */
 .layer-rail{
   position:absolute;inset:0 auto 0 0;width:4px;
   background:linear-gradient(180deg,var(--brand-lift),var(--brand));
@@ -149,7 +161,18 @@ details[open] .chev{transform:rotate(45deg);}
 }
 .layer:hover .layer-rail{transform:scaleY(1);}
 
-/* the vertical spine label only exists in accordion mode */
+/* type sits on the image, so it is cream throughout */
+.layer-h{position:relative;width:100%;}
+.layer-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.25rem;}
+.layer-num{font-family:'Sanchez',Georgia,serif;font-size:2.3rem;line-height:1;color:var(--accent);opacity:.8;}
+.layer-name{font-family:'Sanchez',Georgia,serif;font-size:1.45rem;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--cream);white-space:nowrap;}
+.layer-chips{display:flex;flex-wrap:wrap;gap:.5rem;}
+.layer-chip{
+  border-radius:9999px;padding:.375rem 1rem;font-size:.88rem;white-space:nowrap;
+  background:rgba(248,247,242,.10);border:1px solid rgba(248,247,242,.24);
+  color:rgba(248,247,242,.88);backdrop-filter:blur(2px);
+}
 .layer-v{display:none;}
 
 @media (min-width:1024px){
@@ -159,32 +182,45 @@ details[open] .chev{transform:rotate(45deg);}
     flex:1 1 0;min-width:0;padding:1.6rem 1.35rem;
     display:flex;align-items:center;justify-content:center;
     transition:flex-grow .55s cubic-bezier(.2,.7,.3,1),
-               opacity .45s ease,filter .45s ease,
                border-color .35s ease,box-shadow .35s ease;
   }
   .layer:hover{transform:none;}            /* the width IS the affordance */
 
-  /* everything recedes while the row is being pointed at… */
-  .layers:hover .layer{flex-grow:.62;opacity:.42;filter:saturate(.15);}
+  /* collapsed: image washed out to near-white, like the reference */
+  .layers .layer .layer-bg{filter:grayscale(1) brightness(2.6) opacity(.30);}
+  .layers .layer .layer-scrim{opacity:0;}
+
+  /* everything narrows while the row is pointed at… */
+  .layers:hover .layer{flex-grow:.62;}
   /* …except the one under the cursor, or panel 01 when idle */
   .layers:hover .layer:hover,
   .layers:not(:hover) .layer:first-child{
-    flex-grow:4.6;opacity:1;filter:none;
-    border-color:rgba(122,0,0,.35);
-    box-shadow:0 22px 48px -24px rgba(122,0,0,.45);
+    flex-grow:4.6;
+    border-color:rgba(122,0,0,.45);
+    box-shadow:0 22px 48px -24px rgba(122,0,0,.55);
   }
+  .layers:hover .layer:hover .layer-bg,
+  .layers:not(:hover) .layer:first-child .layer-bg{
+    filter:none;transform:scale(1.05);
+  }
+  .layers:hover .layer:hover .layer-scrim,
+  .layers:not(:hover) .layer:first-child .layer-scrim{opacity:1;}
   .layers:hover .layer:hover .layer-rail,
   .layers:not(:hover) .layer:first-child .layer-rail{transform:scaleY(1);}
 
-  /* collapsed: number + name run up the spine */
+  /* collapsed spine label — dark, because the panel behind it is washed pale */
   .layer-v{
     display:flex;align-items:center;gap:1.1rem;
     writing-mode:vertical-rl;transform:rotate(180deg);
     white-space:nowrap;transition:opacity .3s ease;
   }
-  /* expanded: the real content, pinned to the bottom-left like the ref */
+  .layer-v-num{font-family:'Sanchez',Georgia,serif;font-size:1.5rem;line-height:1;color:rgba(122,0,0,.45);}
+  .layer-v-name{font-family:'Sanchez',Georgia,serif;font-size:1.05rem;text-transform:uppercase;
+    letter-spacing:.16em;color:var(--brand-alt);}
+
+  /* expanded content, pinned bottom-left like the reference */
   .layer-h{
-    position:absolute;left:1.6rem;right:1.6rem;bottom:1.6rem;
+    position:absolute;left:1.6rem;right:1.6rem;bottom:1.6rem;width:auto;
     opacity:0;transform:translateY(8px);pointer-events:none;
     transition:opacity .35s ease .08s,transform .35s ease .08s;
   }
@@ -197,7 +233,7 @@ details[open] .chev{transform:rotate(45deg);}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .layer,.layer-rail,.layer-h{transition:none;}
+  .layer,.layer-rail,.layer-h,.layer-bg,.layer-scrim{transition:none;}
   .layer:hover{transform:none;}
 }
 

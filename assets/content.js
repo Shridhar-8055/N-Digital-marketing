@@ -29,19 +29,27 @@ const MODULES = [
 ];
 
 /* ── "WHAT YOU ACTUALLY LEARN" — the five layers, home page ────────
-   [number, layer name, [things taught in it]]
+   [number, layer name, [things taught in it], background image]
+   The 4th field is the panel background. Swap in a photograph any time —
+   portrait, roughly 900x1200 or larger, and it should read well dark,
+   because it sits under a scrim with cream type on top.
    ────────────────────────────────────────────────────────────────── */
 const LAYERS = [
   ["01", "Marketing",
-   ["Digital Marketing Foundations","Customer Psychology","Funnels","Research","Branding","Strategy"]],
+   ["Digital Marketing Foundations","Customer Psychology","Funnels","Research","Branding","Strategy"],
+   "assets/layers/01-marketing.jpg"],
   ["02", "Acquisition",
-   ["SEO","GEO","Social Media","Google Ads","Meta Ads","Programmatic Advertising"]],
+   ["SEO","GEO","Social Media","Google Ads","Meta Ads","Programmatic Advertising"],
+   "assets/layers/02-acquisition.jpg"],
   ["03", "Creation",
-   ["AI Content","Copywriting","Creative Workflows","Video & Visual Content","Personalisation"]],
+   ["AI Content","Copywriting","Creative Workflows","Video & Visual Content","Personalisation"],
+   "assets/layers/03-creation.jpg"],
   ["04", "Automation",
-   ["Email Automation","WhatsApp Automation","CRM Workflows","n8n","Zapier","Make","AI Agents"]],
+   ["Email Automation","WhatsApp Automation","CRM Workflows","n8n","Zapier","Make","AI Agents"],
+   "assets/layers/04-automation.jpg"],
   ["05", "Intelligence",
-   ["GA4","Looker Studio","Attribution","Marketing Analytics","CRO","Experimentation","ROI"]],
+   ["GA4","Looker Studio","Attribution","Marketing Analytics","CRO","Experimentation","ROI"],
+   "assets/layers/05-intelligence.jpg"],
 ];
 
 /* ── "WHAT HAPPENS WHEN YOU JOIN IDM" ─────────────────────────────

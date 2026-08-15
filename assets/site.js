@@ -72,24 +72,26 @@ if ($('journey')) {
 
 /* ── the five layers (index.html) ───────────────────────────────── */
 if ($('layerStack')) {
-  $('layerStack').innerHTML = LAYERS.map(([num, name, items]) => `
+  $('layerStack').innerHTML = LAYERS.map(([num, name, items, img]) => `
     <article class="layer reveal">
+      <span class="layer-bg" aria-hidden="true"${img ? ` style="background-image:url('${esc(img)}')"` : ''}></span>
+      <span class="layer-scrim" aria-hidden="true"></span>
       <span class="layer-rail" aria-hidden="true"></span>
 
       <!-- collapsed spine (accordion mode only) -->
       <div class="layer-v" aria-hidden="true">
-        <span class="font-display text-[1.5rem] leading-none text-brand/40">${esc(num)}</span>
-        <span class="font-display text-[1.05rem] uppercase tracking-[.16em] text-brandAlt">${esc(name)}</span>
+        <span class="layer-v-num">${esc(num)}</span>
+        <span class="layer-v-name">${esc(name)}</span>
       </div>
 
       <!-- expanded content -->
-      <div class="layer-h w-full">
-        <div class="flex items-baseline gap-4 mb-5">
-          <span class="font-display text-[2.3rem] leading-none text-brand/45">${esc(num)}</span>
-          <span class="font-display text-[1.45rem] uppercase tracking-[.04em] text-brandAlt whitespace-nowrap">${esc(name)}</span>
+      <div class="layer-h">
+        <div class="layer-head">
+          <span class="layer-num">${esc(num)}</span>
+          <span class="layer-name">${esc(name)}</span>
         </div>
-        <div class="flex flex-wrap gap-2">
-          ${items.map(t => `<span class="rounded-full bg-brand/5 border border-brand/15 px-4 py-1.5 text-[.88rem] text-inkDark/75 whitespace-nowrap">${esc(t)}</span>`).join('')}
+        <div class="layer-chips">
+          ${items.map(t => `<span class="layer-chip">${esc(t)}</span>`).join('')}
         </div>
       </div>
     </article>`).join('');
