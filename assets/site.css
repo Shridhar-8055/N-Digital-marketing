@@ -76,44 +76,61 @@ details[open] .chev{transform:rotate(45deg);}
   html{scroll-behavior:auto;}
 }
 
-/* ── "what happens when you join" — stepped progression ─────────── */
-.journey{position:relative;list-style:none;}
-/* the spine the markers sit on */
-.journey::before{
-  content:"";position:absolute;left:1.5rem;top:1.25rem;bottom:1.25rem;width:2px;
-  background:linear-gradient(180deg,var(--line),var(--brand-lift) 82%,var(--accent));
+/* ── "what happens when you join" — stepped progression ───────────
+   Mobile: a 2-up grid, so six steps take three rows instead of a very
+   long single column. From 768px up it becomes the timeline.
+   ─────────────────────────────────────────────────────────────────── */
+.journey{
+  list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.7rem;position:relative;
 }
 .journey-step{
-  position:relative;display:flex;gap:1.5rem;align-items:flex-start;
-  padding:1.35rem 1.5rem 1.35rem 0;
+  position:relative;display:flex;flex-direction:column;gap:.7rem;
+  padding:1.15rem 1rem;border-radius:.9rem;
+  background:var(--surface);border:1px solid var(--line);
 }
 .journey-dot{
-  position:relative;z-index:1;flex:0 0 3rem;height:3rem;
+  flex:0 0 auto;width:2.4rem;height:2.4rem;
   display:grid;place-items:center;border-radius:9999px;
-  background:var(--surface);border:1px solid var(--line);
-  font-family:'Sanchez',Georgia,serif;font-size:.9rem;color:var(--cream);
+  background:rgba(156,17,17,.18);border:1px solid var(--line);
+  font-family:'Sanchez',Georgia,serif;font-size:.82rem;color:var(--cream);
   transition:background .3s ease,border-color .3s ease,color .3s ease,transform .3s ease;
 }
-.journey-step:hover .journey-dot{
-  border-color:var(--brand-lift);
-  background:linear-gradient(180deg,var(--brand-lift),var(--brand));
-  transform:scale(1.08);
-}
-/* the final row is the payoff */
-.journey-step.is-payoff .journey-dot{
-  border-color:var(--accent);color:var(--accent);
-  background:rgba(245,245,220,.08);
-}
 .journey-step.is-payoff{
-  margin-top:.5rem;border-radius:1rem;
-  background:linear-gradient(90deg,rgba(156,17,17,.22),transparent 70%);
-  padding-left:0;
+  border-color:rgba(245,245,220,.35);
+  background:linear-gradient(120deg,rgba(156,17,17,.30),rgba(36,9,9,.6));
+}
+.journey-step.is-payoff .journey-dot{
+  border-color:var(--accent);color:var(--accent);background:rgba(245,245,220,.10);
 }
 
-@media (min-width:640px){
-  .journey::before{left:1.75rem;}
-  .journey-step{gap:1.75rem;}
-  .journey-dot{flex-basis:3.5rem;height:3.5rem;font-size:1rem;}
+@media (min-width:768px){
+  .journey{display:block;}
+  /* the spine the markers sit on */
+  .journey::before{
+    content:"";position:absolute;left:1.75rem;top:1.25rem;bottom:1.25rem;width:2px;
+    background:linear-gradient(180deg,var(--line),var(--brand-lift) 82%,var(--accent));
+  }
+  .journey-step{
+    flex-direction:row;align-items:flex-start;gap:1.75rem;
+    padding:1.35rem 1.5rem 1.35rem 0;
+    background:none;border:0;border-radius:1rem;
+  }
+  .journey-dot{
+    position:relative;z-index:1;flex:0 0 3.5rem;width:auto;height:3.5rem;
+    font-size:1rem;background:var(--surface);border:1px solid var(--line);
+  }
+  .journey-step:hover .journey-dot{
+    border-color:var(--brand-lift);
+    background:linear-gradient(180deg,var(--brand-lift),var(--brand));
+    transform:scale(1.08);
+  }
+  .journey-step.is-payoff{
+    margin-top:.5rem;padding-left:0;
+    background:linear-gradient(90deg,rgba(156,17,17,.22),transparent 70%);
+    border:0;
+  }
+  .journey-step.is-payoff .journey-dot{background:rgba(245,245,220,.08);}
 }
 @media (prefers-reduced-motion:reduce){
   .journey-dot{transition:none;}
@@ -121,36 +138,42 @@ details[open] .chev{transform:rotate(45deg);}
 }
 
 /* ── "five layers" — image panels, expanding accordion ─────────────
-   Backgrounds come from the 4th field of each LAYERS row in content.js.
-   Below 1024px: a stack of image cards, content always visible.
-   From 1024px up: the accordion. Collapsed panels wash their image out
-   to near-white and print the name up the spine in maroon; the open one
-   restores full colour under a scrim and carries cream type — which is
-   the behaviour in the reference.
+   Driven by .is-open, NOT :hover — hover does not exist on touch, so a
+   phone got no interaction at all. site.js sets .is-open on mouseenter
+   where a fine pointer exists, and on tap everywhere.
+
+   Below 1024px: a vertical stack. Every card shows its heading; the open
+   one reveals its chips and comes to full colour.
+   From 1024px up: the horizontal accordion from the reference — the open
+   panel widens and colours in, the rest stay narrow and washed out.
    ─────────────────────────────────────────────────────────────────── */
 .layers{display:flex;flex-direction:column;gap:1rem;}
 
 .layer{
   position:relative;overflow:hidden;border-radius:1rem;isolation:isolate;
-  border:1px solid rgba(26,20,20,.10);padding:1.5rem;
-  transition:transform .3s cubic-bezier(.2,.7,.3,1),
-             box-shadow .3s ease,border-color .3s ease;
+  border:1px solid rgba(26,20,20,.10);padding:1.5rem;cursor:pointer;
+  transition:border-color .3s ease,box-shadow .3s ease;
 }
-.layer-bg{
-  position:absolute;inset:0;z-index:-2;
-  background-color:var(--bg);background-size:cover;background-position:center;
-  transition:filter .55s ease,transform .8s cubic-bezier(.2,.7,.3,1);
-}
-.layer-scrim{
-  position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(26,5,5,.30) 0%,rgba(26,5,5,.80) 62%,rgba(26,5,5,.93) 100%);
-  transition:opacity .45s ease;
-}
-.layer:hover{
-  transform:translateY(-4px);
+.layer:focus-visible{outline:2px solid var(--brand-lift);outline-offset:3px;}
+.layer.is-open{
   border-color:rgba(122,0,0,.45);
   box-shadow:0 22px 48px -24px rgba(122,0,0,.55);
 }
+
+.layer-bg{
+  position:absolute;inset:0;z-index:-2;
+  background-color:var(--bg);background-size:cover;background-position:center;
+  filter:grayscale(.8) brightness(1.35) opacity(.55);
+  transition:filter .55s ease,transform .8s cubic-bezier(.2,.7,.3,1);
+}
+.layer.is-open .layer-bg{filter:none;transform:scale(1.04);}
+
+.layer-scrim{
+  position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(26,5,5,.30) 0%,rgba(26,5,5,.80) 62%,rgba(26,5,5,.93) 100%);
+  opacity:.55;transition:opacity .45s ease;
+}
+.layer.is-open .layer-scrim{opacity:1;}
 
 /* brand rail down the leading edge */
 .layer-rail{
@@ -159,19 +182,26 @@ details[open] .chev{transform:rotate(45deg);}
   transform:scaleY(0);transform-origin:top;
   transition:transform .35s cubic-bezier(.2,.7,.3,1);
 }
-.layer:hover .layer-rail{transform:scaleY(1);}
+.layer.is-open .layer-rail{transform:scaleY(1);}
 
 /* type sits on the image, so it is cream throughout */
 .layer-h{position:relative;width:100%;}
-.layer-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.25rem;}
-.layer-num{font-family:'Sanchez',Georgia,serif;font-size:2.3rem;line-height:1;color:var(--accent);opacity:.8;}
-.layer-name{font-family:'Sanchez',Georgia,serif;font-size:1.45rem;text-transform:uppercase;
-  letter-spacing:.04em;color:var(--cream);white-space:nowrap;}
-.layer-chips{display:flex;flex-wrap:wrap;gap:.5rem;}
+.layer-head{display:flex;align-items:baseline;gap:1rem;}
+.layer-num{font-family:'Sanchez',Georgia,serif;font-size:2.1rem;line-height:1;color:var(--accent);opacity:.8;}
+.layer-name{font-family:'Sanchez',Georgia,serif;font-size:1.3rem;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--cream);}
+
+/* chips fold away until the card is opened */
+.layer-chips{
+  display:flex;flex-wrap:wrap;gap:.5rem;
+  max-height:0;opacity:0;overflow:hidden;
+  transition:max-height .5s cubic-bezier(.2,.7,.3,1),opacity .3s ease,margin-top .5s ease;
+}
+.layer.is-open .layer-chips{max-height:24rem;opacity:1;margin-top:1.15rem;}
 .layer-chip{
-  border-radius:9999px;padding:.375rem 1rem;font-size:.88rem;white-space:nowrap;
+  border-radius:9999px;padding:.375rem 1rem;font-size:.86rem;
   background:rgba(248,247,242,.10);border:1px solid rgba(248,247,242,.24);
-  color:rgba(248,247,242,.88);backdrop-filter:blur(2px);
+  color:rgba(248,247,242,.88);
 }
 .layer-v{display:none;}
 
@@ -184,31 +214,13 @@ details[open] .chev{transform:rotate(45deg);}
     transition:flex-grow .55s cubic-bezier(.2,.7,.3,1),
                border-color .35s ease,box-shadow .35s ease;
   }
-  .layer:hover{transform:none;}            /* the width IS the affordance */
+  /* collapsed: washed to near-white, like the reference */
+  .layer .layer-bg{filter:grayscale(1) brightness(2.6) opacity(.30);}
+  .layer .layer-scrim{opacity:0;}
+  .layer.is-open{flex-grow:4.6;}
+  .layer.is-open .layer-scrim{opacity:1;}
 
-  /* collapsed: image washed out to near-white, like the reference */
-  .layers .layer .layer-bg{filter:grayscale(1) brightness(2.6) opacity(.30);}
-  .layers .layer .layer-scrim{opacity:0;}
-
-  /* everything narrows while the row is pointed at… */
-  .layers:hover .layer{flex-grow:.62;}
-  /* …except the one under the cursor, or panel 01 when idle */
-  .layers:hover .layer:hover,
-  .layers:not(:hover) .layer:first-child{
-    flex-grow:4.6;
-    border-color:rgba(122,0,0,.45);
-    box-shadow:0 22px 48px -24px rgba(122,0,0,.55);
-  }
-  .layers:hover .layer:hover .layer-bg,
-  .layers:not(:hover) .layer:first-child .layer-bg{
-    filter:none;transform:scale(1.05);
-  }
-  .layers:hover .layer:hover .layer-scrim,
-  .layers:not(:hover) .layer:first-child .layer-scrim{opacity:1;}
-  .layers:hover .layer:hover .layer-rail,
-  .layers:not(:hover) .layer:first-child .layer-rail{transform:scaleY(1);}
-
-  /* collapsed spine label — dark, because the panel behind it is washed pale */
+  /* collapsed spine label — dark, the panel behind it is pale */
   .layer-v{
     display:flex;align-items:center;gap:1.1rem;
     writing-mode:vertical-rl;transform:rotate(180deg);
@@ -217,6 +229,7 @@ details[open] .chev{transform:rotate(45deg);}
   .layer-v-num{font-family:'Sanchez',Georgia,serif;font-size:1.5rem;line-height:1;color:rgba(122,0,0,.45);}
   .layer-v-name{font-family:'Sanchez',Georgia,serif;font-size:1.05rem;text-transform:uppercase;
     letter-spacing:.16em;color:var(--brand-alt);}
+  .layer.is-open .layer-v{opacity:0;}
 
   /* expanded content, pinned bottom-left like the reference */
   .layer-h{
@@ -224,17 +237,16 @@ details[open] .chev{transform:rotate(45deg);}
     opacity:0;transform:translateY(8px);pointer-events:none;
     transition:opacity .35s ease .08s,transform .35s ease .08s;
   }
-  .layers:hover .layer:hover .layer-h,
-  .layers:not(:hover) .layer:first-child .layer-h{
-    opacity:1;transform:none;pointer-events:auto;
-  }
-  .layers:hover .layer:hover .layer-v,
-  .layers:not(:hover) .layer:first-child .layer-v{opacity:0;}
+  .layer.is-open .layer-h{opacity:1;transform:none;pointer-events:auto;}
+  .layer-num{font-size:2.3rem;}
+  .layer-name{font-size:1.45rem;white-space:nowrap;}
+  /* on desktop the chips are always shown inside the open panel */
+  .layer.is-open .layer-chips{margin-top:1.25rem;}
+  .layer-chip{white-space:nowrap;}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .layer,.layer-rail,.layer-h,.layer-bg,.layer-scrim{transition:none;}
-  .layer:hover{transform:none;}
+  .layer,.layer-rail,.layer-h,.layer-bg,.layer-scrim,.layer-chips{transition:none;}
 }
 
 /* current page in the top nav */

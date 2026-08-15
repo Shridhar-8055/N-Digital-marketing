@@ -62,9 +62,9 @@ if ($('journey')) {
     <li class="journey-step reveal ${payoff ? 'is-payoff' : ''}">
       <span class="journey-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
       <div class="min-w-0">
-        <p class="text-[.8rem] tracking-[.18em] uppercase ${payoff ? 'text-accent' : 'text-cream/40'} mb-2">${esc(lead)}</p>
-        <h3 class="font-display text-[1.15rem] sm:text-[1.45rem] leading-snug ${payoff ? 'text-accent' : 'text-cream'}">${esc(becomes)}</h3>
-        <p class="mt-2.5 text-[.94rem] text-cream/60">${esc(topics)}</p>
+        <p class="text-[.66rem] md:text-[.8rem] tracking-[.16em] md:tracking-[.18em] uppercase ${payoff ? 'text-accent' : 'text-cream/40'} mb-1.5 md:mb-2">${esc(lead)}</p>
+        <h3 class="font-display text-[.98rem] md:text-[1.45rem] leading-snug ${payoff ? 'text-accent' : 'text-cream'}">${esc(becomes)}</h3>
+        <p class="mt-1.5 md:mt-2.5 text-[.78rem] md:text-[.94rem] text-cream/60">${esc(topics)}</p>
       </div>
     </li>`;
   }).join('');
@@ -95,6 +95,25 @@ if ($('layerStack')) {
         </div>
       </div>
     </article>`).join('');
+
+  /* Open state is a class, not :hover — a phone has no hover, so these
+     panels were completely inert on touch. Pointer devices still open on
+     mouseenter, so the desktop feel is unchanged. */
+  const panels = [...$('layerStack').querySelectorAll('.layer')];
+  const openPanel = el => panels.forEach(p => p.classList.toggle('is-open', p === el));
+  openPanel(panels[0]);
+
+  const finePointer = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  panels.forEach((p, i) => {
+    p.tabIndex = 0;
+    p.setAttribute('role', 'button');
+    p.setAttribute('aria-label', LAYERS[i][1] + " — show what's covered");
+    if (finePointer) p.addEventListener('mouseenter', () => openPanel(p));
+    p.addEventListener('click', () => openPanel(p));
+    p.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPanel(p); }
+    });
+  });
 }
 
 /* ── FAQs ───────────────────────────────────────────────────────── */
