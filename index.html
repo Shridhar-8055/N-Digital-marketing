@@ -200,10 +200,27 @@
       </h2>
     </div>
 
-    <ol id="journey" class="journey"></ol>
+    <div class="grid lg:grid-cols-[1.12fr_.88fr] gap-10 xl:gap-16 items-start">
 
-    <div class="text-center mt-14">
-      <a href="#apply" class="reveal btn-primary inline-block rounded-full px-10 py-4 font-semibold">Talk to Mentor</a>
+      <div>
+        <ol id="journey" class="journey"></ol>
+        <div class="text-center lg:text-left mt-12">
+          <a href="#apply" class="reveal btn-primary inline-block rounded-full px-10 py-4 font-semibold">Talk to Mentor</a>
+        </div>
+      </div>
+
+      <!-- sticks alongside the steps while you read them -->
+      <div class="reveal lg:sticky lg:top-28">
+        <div class="join-video-frame">
+          <!-- preload=none + data-src: 6.8 MB never downloads unless the
+               section is actually reached. site.js swaps it in on view. -->
+          <video class="join-video" data-src="public/idm-intro.mp4"
+                 muted loop playsinline controls preload="none"
+                 width="1425" height="1080"
+                 aria-label="A short introduction to the IDM programme"></video>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>

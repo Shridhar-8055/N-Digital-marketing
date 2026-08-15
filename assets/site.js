@@ -438,3 +438,23 @@ if (document.querySelector('[data-brochure]')) {
       : "We couldn't reach the file just now — we'll email the syllabus to you shortly.";
   });
 }
+
+/* ── intro video: fetch only once it is actually reached ────────────
+   The file is several megabytes for a few seconds. Attaching the src up
+   front means every visitor pays for it, including the ones who never
+   scroll this far — so the source is held in data-src and swapped in on
+   intersection. */
+document.querySelectorAll('video[data-src]').forEach(v => {
+  const io2 = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      io2.unobserve(v);
+      v.src = v.dataset.src;
+      v.load();
+      /* autoplay can be refused (data-saver, iOS low-power). It is muted
+         and has controls, so a refusal just leaves it paused — not broken. */
+      v.play().catch(() => {});
+    });
+  }, {rootMargin: '200px'});
+  io2.observe(v);
+});
