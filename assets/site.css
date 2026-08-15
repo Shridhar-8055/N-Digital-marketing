@@ -207,23 +207,6 @@ nav a.btn-primary::after{display:none;}
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 
-/* ── genuinely white light sections ─────────────────────────────────
-   These used bg-cream (#f8f7f2), a warm off-white that reads yellow next
-   to the pure-white cards sitting on it. The section is now #fff.
-   --cream is deliberately untouched: it is the TEXT colour on every dark
-   section, and pushing that to pure white would cool the whole theme.
-   ─────────────────────────────────────────────────────────────────── */
-.bg-paper{background-color:#fff;}
-
-/* Once the page behind them is also white, the cards need their own
-   edge — a 10% border alone left them invisible. */
-.card-light{
-  background:#fff;
-  border:1px solid rgba(26,20,20,.10);
-  box-shadow:0 1px 2px rgba(26,20,20,.04),
-             0 10px 28px -18px rgba(26,20,20,.22);
-}
-
 /* ── "20 seats only" pill ───────────────────────────────────────────
    Three layers reading as scarcity: a light tracing the border, a sheen
    crossing the face, and the whole pill breathing. Registering the angle

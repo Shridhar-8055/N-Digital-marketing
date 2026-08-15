@@ -152,27 +152,26 @@ const MODULES = [
 
 /* ── "WHAT YOU ACTUALLY LEARN" — the five layers, home page ────────
    [number, layer name, [things taught in it], background image]
-   All five currently share one image; give any row its own file to
-   differentiate it. The 4th field is the panel background — swap in a photograph any time —
+   The 4th field is the panel background — swap in a photograph any time —
    portrait, roughly 900x1200 or larger, and it should read well dark,
    because it sits under a scrim with cream type on top.
    ────────────────────────────────────────────────────────────────── */
 const LAYERS = [
   ["01", "Marketing",
    ["Digital Marketing Foundations","Customer Psychology","Funnels","Research","Branding","Strategy"],
-   "public/layers/01-marketing-portrait.jpg"],
+   "public/layers/01-marketing.jpg"],
   ["02", "Acquisition",
    ["SEO","GEO","Social Media","Google Ads","Meta Ads","Programmatic Advertising"],
-   "public/layers/01-marketing-portrait.jpg"],
+   "public/layers/02-acquisition.jpg"],
   ["03", "Creation",
    ["AI Content","Copywriting","Creative Workflows","Video & Visual Content","Personalisation"],
-   "public/layers/01-marketing-portrait.jpg"],
+   "public/layers/03-creation.jpg"],
   ["04", "Automation",
    ["Email Automation","WhatsApp Automation","CRM Workflows","n8n","Zapier","Make","AI Agents"],
-   "public/layers/01-marketing-portrait.jpg"],
+   "public/layers/04-automation.jpg"],
   ["05", "Intelligence",
    ["GA4","Looker Studio","Attribution","Marketing Analytics","CRO","Experimentation","ROI"],
-   "public/layers/01-marketing-portrait.jpg"],
+   "public/layers/05-intelligence.jpg"],
 ];
 
 /* ── "WHAT HAPPENS WHEN YOU JOIN IDM" ─────────────────────────────
