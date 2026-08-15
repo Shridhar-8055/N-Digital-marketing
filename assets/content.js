@@ -28,6 +28,22 @@ const MODULES = [
   ["Career, Freelancing & Agency Setup", ["Build your portfolio & personal brand","Freelance platforms & how to price","Resume & LinkedIn optimization","Set up your own agency step by step"]],
 ];
 
+/* ── "WHAT YOU ACTUALLY LEARN" — the five layers, home page ────────
+   [number, layer name, [things taught in it]]
+   ────────────────────────────────────────────────────────────────── */
+const LAYERS = [
+  ["01", "Marketing",
+   ["Digital Marketing Foundations","Customer Psychology","Funnels","Research","Branding","Strategy"]],
+  ["02", "Acquisition",
+   ["SEO","GEO","Social Media","Google Ads","Meta Ads","Programmatic Advertising"]],
+  ["03", "Creation",
+   ["AI Content","Copywriting","Creative Workflows","Video & Visual Content","Personalisation"]],
+  ["04", "Automation",
+   ["Email Automation","WhatsApp Automation","CRM Workflows","n8n","Zapier","Make","AI Agents"]],
+  ["05", "Intelligence",
+   ["GA4","Looker Studio","Attribution","Marketing Analytics","CRO","Experimentation","ROI"]],
+];
+
 const FAQS = [
   ["What makes IDM different from other digital marketing courses?",
    "Most courses hand you recorded lectures and a certificate. This is an offline, execution-first program run inside a working agency — you spend the majority of every day actually building campaigns, with mentors reviewing your work."],

@@ -53,6 +53,22 @@ if ($('modulePreview')) {
     </div>`).join('');
 }
 
+/* ── the five layers (index.html) ───────────────────────────────── */
+if ($('layerStack')) {
+  $('layerStack').innerHTML = LAYERS.map(([num, name, items]) => `
+    <article class="reveal rounded-2xl bg-white border border-inkDark/10 p-6 sm:p-8 hover:border-brand/40 hover:shadow-xl transition-all duration-300">
+      <div class="flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
+        <div class="md:w-64 shrink-0 flex items-baseline gap-4">
+          <span class="font-display text-[1.9rem] leading-none text-brand/35">${esc(num)}</span>
+          <span class="font-display text-[1.25rem] uppercase tracking-[.04em] text-brandAlt">${esc(name)}</span>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          ${items.map(t => `<span class="rounded-full bg-brand/8 border border-brand/15 px-4 py-1.5 text-[.86rem] text-inkDark/75">${esc(t)}</span>`).join('')}
+        </div>
+      </div>
+    </article>`).join('');
+}
+
 /* ── FAQs ───────────────────────────────────────────────────────── */
 if ($('faqList')) {
   $('faqList').innerHTML = FAQS.map(([q, a]) => `
