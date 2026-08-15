@@ -9,6 +9,34 @@
 const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $   = id => document.getElementById(id);
 
+/* ── headline number band, counts up on first view ──────────────── */
+if ($('statBand')) {
+  $('statBand').innerHTML = STATS.map(([value, suffix, label]) => `
+    <article class="reveal card rounded-2xl px-5 py-7 sm:px-7 sm:py-8 text-center">
+      <p class="stat-num" data-count="${esc(value)}" data-suffix="${esc(suffix)}">0${esc(suffix)}</p>
+      <p class="mt-3 text-[.84rem] sm:text-[.9rem] text-cream/60">${esc(label)}</p>
+    </article>`).join('');
+
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const run = el => {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    if (still) { el.textContent = target + suffix; return; }
+    const DUR = 1400, t0 = performance.now();
+    const tick = now => {
+      const p = Math.min(1, (now - t0) / DUR);
+      /* ease-out cubic: fast start, gentle landing */
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const counters = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { run(e.target); counters.unobserve(e.target); }
+  }), {threshold: .6});
+  $('statBand').querySelectorAll('.stat-num').forEach(el => counters.observe(el));
+}
+
 /* ── skill chips — two counter-scrolling rows ───────────────────── */
 if ($('skillRowA') || $('skillRowB')) {
   const chip = t => `<span class="skill-chip">${esc(t)}</span>`;
@@ -244,3 +272,39 @@ document.querySelectorAll('[data-accordion]').forEach(group => {
     group.querySelectorAll('details[open]').forEach(d => { if (d !== e.target) d.open = false; });
   }, true);
 });
+
+/* ── scroll progress bar ────────────────────────────────────────── */
+const bar = $('scrollBar');
+if (bar) {
+  /* Written straight from the scroll handler rather than deferred into a
+     rAF. It is a single style write, the browser already coalesces scroll
+     events, and a rAF gate needs a "frame pending" flag that stays stuck
+     if a frame never arrives — which is exactly what happens in a
+     background tab. */
+  const paint = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.width = (max > 0 ? Math.min(100, (scrollY / max) * 100) : 0) + '%';
+  };
+  addEventListener('scroll', paint, {passive: true});
+  addEventListener('resize', paint, {passive: true});
+  paint();
+}
+
+/* ── cursor spotlight on cards ──────────────────────────────────────
+   Pointer-device only: on touch there is no cursor to follow, and the
+   listener would just cost battery. Reads are cheap (event coords) and
+   the write is batched into one rAF. */
+if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+  let frame = null;
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+        frame = null;
+      });
+    });
+  });
+}

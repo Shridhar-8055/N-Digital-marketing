@@ -47,6 +47,7 @@
 
 <!-- ══════════════════════════════════════════ NAV ══════════════════════════════════════════ -->
 <header id="nav" class="nav-glass fixed top-0 inset-x-0 z-50">
+  <span id="scrollBar" class="scroll-bar" aria-hidden="true"></span>
   <div class="mx-auto max-w-site px-5 sm:px-8 xl:px-14 2xl:px-20">
     <div class="flex items-center justify-between h-[76px]">
 
@@ -80,7 +81,8 @@
 
 
 <!-- ══════════════════════════════════════════ HERO ══════════════════════════════════════════ -->
-<section id="top" class="relative hero-wash min-h-[92vh] flex items-center pt-32 pb-20 overflow-hidden">
+<section id="top" class="relative hero-wash grain min-h-[92vh] flex items-center pt-32 pb-20 overflow-hidden">
+  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="absolute inset-0 grid-overlay pointer-events-none"></div>
 
   <div class="relative mx-auto max-w-site px-5 sm:px-8 xl:px-14 2xl:px-20 w-full text-center">
@@ -125,6 +127,14 @@
     <p class="reveal mt-9 text-[.9rem] text-cream/50">
       Next Batch Starts <span class="text-cream font-semibold">Sept 7, 2026</span>
     </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════ HEADLINE NUMBERS ═══════════════════════ -->
+<section class="relative py-14 sm:py-16 border-y border-line bg-surface/40">
+  <div class="mx-auto max-w-site px-5 sm:px-8 xl:px-14 2xl:px-20">
+    <div id="statBand" class="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4"></div>
   </div>
 </section>
 

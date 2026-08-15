@@ -15,6 +15,18 @@ const SKILLS = ["AI-First Marketing","Generative AI","Prompt Engineering","SEO",
   "Email & WhatsApp Automation","AI Agents","No-Code Automation","Martech & CRM",
   "Conversion Optimisation","Influencer Marketing","E-commerce"];
 
+/* ── HEADLINE NUMBERS — home page stat band ───────────────────────
+   [value, suffix, label]  — counted up when the band scrolls into view.
+   Every figure here comes from the syllabus.
+   ────────────────────────────────────────────────────────────────── */
+const STATS = [
+  ["12",  "",  "Modules"],
+  ["120", "",  "Live hours"],
+  ["100", "+", "Tools, hands-on"],
+  ["30",  "+", "Free certifications"],
+  ["2",   "",  "Months of internship"],
+];
+
 /* ── PLACEMENT MARQUEE ────────────────────────────────────────────
    [file in public/, brand name for the alt text]
    Rendered as two rows scrolling in opposite directions. Split point is
