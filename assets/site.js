@@ -56,14 +56,23 @@ if ($('modulePreview')) {
 /* ── the five layers (index.html) ───────────────────────────────── */
 if ($('layerStack')) {
   $('layerStack').innerHTML = LAYERS.map(([num, name, items]) => `
-    <article class="reveal rounded-2xl bg-white border border-inkDark/10 p-6 sm:p-8 hover:border-brand/40 hover:shadow-xl transition-all duration-300">
-      <div class="flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
-        <div class="md:w-64 shrink-0 flex items-baseline gap-4">
-          <span class="font-display text-[1.9rem] leading-none text-brand/35">${esc(num)}</span>
-          <span class="font-display text-[1.25rem] uppercase tracking-[.04em] text-brandAlt">${esc(name)}</span>
+    <article class="layer reveal">
+      <span class="layer-rail" aria-hidden="true"></span>
+
+      <!-- collapsed spine (accordion mode only) -->
+      <div class="layer-v" aria-hidden="true">
+        <span class="font-display text-[1.5rem] leading-none text-brand/40">${esc(num)}</span>
+        <span class="font-display text-[1.05rem] uppercase tracking-[.16em] text-brandAlt">${esc(name)}</span>
+      </div>
+
+      <!-- expanded content -->
+      <div class="layer-h w-full">
+        <div class="flex items-baseline gap-4 mb-5">
+          <span class="font-display text-[2.3rem] leading-none text-brand/45">${esc(num)}</span>
+          <span class="font-display text-[1.45rem] uppercase tracking-[.04em] text-brandAlt whitespace-nowrap">${esc(name)}</span>
         </div>
         <div class="flex flex-wrap gap-2">
-          ${items.map(t => `<span class="rounded-full bg-brand/8 border border-brand/15 px-4 py-1.5 text-[.86rem] text-inkDark/75">${esc(t)}</span>`).join('')}
+          ${items.map(t => `<span class="rounded-full bg-brand/5 border border-brand/15 px-4 py-1.5 text-[.88rem] text-inkDark/75 whitespace-nowrap">${esc(t)}</span>`).join('')}
         </div>
       </div>
     </article>`).join('');

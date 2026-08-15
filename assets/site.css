@@ -76,6 +76,87 @@ details[open] .chev{transform:rotate(45deg);}
   html{scroll-behavior:auto;}
 }
 
+/* ── "five layers" — expanding-panel accordion ──────────────────────
+   Below 1024px this is a plain stack of cards with a hover lift.
+   From 1024px up it becomes the accordion: five narrow panels, the
+   hovered one widens to full colour while the rest recede. With
+   nothing hovered, panel 01 sits open so the row never looks dead.
+   ─────────────────────────────────────────────────────────────────── */
+.layers{display:flex;flex-direction:column;gap:1rem;}
+
+.layer{
+  position:relative;overflow:hidden;border-radius:1rem;
+  background:#fff;border:1px solid rgba(26,20,20,.10);padding:1.5rem;
+  transition:transform .3s cubic-bezier(.2,.7,.3,1),
+             box-shadow .3s ease,border-color .3s ease;
+}
+.layer:hover{
+  transform:translateY(-4px);
+  border-color:rgba(122,0,0,.35);
+  box-shadow:0 22px 48px -24px rgba(122,0,0,.45);
+}
+
+/* brand rail that wipes down the leading edge */
+.layer-rail{
+  position:absolute;inset:0 auto 0 0;width:4px;
+  background:linear-gradient(180deg,var(--brand-lift),var(--brand));
+  transform:scaleY(0);transform-origin:top;
+  transition:transform .35s cubic-bezier(.2,.7,.3,1);
+}
+.layer:hover .layer-rail{transform:scaleY(1);}
+
+/* the vertical spine label only exists in accordion mode */
+.layer-v{display:none;}
+
+@media (min-width:1024px){
+  .layers{flex-direction:row;gap:.7rem;height:25rem;}
+
+  .layer{
+    flex:1 1 0;min-width:0;padding:1.6rem 1.35rem;
+    display:flex;align-items:center;justify-content:center;
+    transition:flex-grow .55s cubic-bezier(.2,.7,.3,1),
+               opacity .45s ease,filter .45s ease,
+               border-color .35s ease,box-shadow .35s ease;
+  }
+  .layer:hover{transform:none;}            /* the width IS the affordance */
+
+  /* everything recedes while the row is being pointed at… */
+  .layers:hover .layer{flex-grow:.62;opacity:.42;filter:saturate(.15);}
+  /* …except the one under the cursor, or panel 01 when idle */
+  .layers:hover .layer:hover,
+  .layers:not(:hover) .layer:first-child{
+    flex-grow:4.6;opacity:1;filter:none;
+    border-color:rgba(122,0,0,.35);
+    box-shadow:0 22px 48px -24px rgba(122,0,0,.45);
+  }
+  .layers:hover .layer:hover .layer-rail,
+  .layers:not(:hover) .layer:first-child .layer-rail{transform:scaleY(1);}
+
+  /* collapsed: number + name run up the spine */
+  .layer-v{
+    display:flex;align-items:center;gap:1.1rem;
+    writing-mode:vertical-rl;transform:rotate(180deg);
+    white-space:nowrap;transition:opacity .3s ease;
+  }
+  /* expanded: the real content, pinned to the bottom-left like the ref */
+  .layer-h{
+    position:absolute;left:1.6rem;right:1.6rem;bottom:1.6rem;
+    opacity:0;transform:translateY(8px);pointer-events:none;
+    transition:opacity .35s ease .08s,transform .35s ease .08s;
+  }
+  .layers:hover .layer:hover .layer-h,
+  .layers:not(:hover) .layer:first-child .layer-h{
+    opacity:1;transform:none;pointer-events:auto;
+  }
+  .layers:hover .layer:hover .layer-v,
+  .layers:not(:hover) .layer:first-child .layer-v{opacity:0;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .layer,.layer-rail,.layer-h{transition:none;}
+  .layer:hover{transform:none;}
+}
+
 /* current page in the top nav */
 nav a[aria-current="page"]{color:var(--cream);}
 
