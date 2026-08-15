@@ -44,6 +44,25 @@ const LAYERS = [
    ["GA4","Looker Studio","Attribution","Marketing Analytics","CRO","Experimentation","ROI"]],
 ];
 
+/* ── "WHAT HAPPENS WHEN YOU JOIN IDM" ─────────────────────────────
+   [lead-in, what you become, the topics behind it]
+   The last row is the payoff and renders highlighted — keep it last.
+   ────────────────────────────────────────────────────────────────── */
+const JOURNEY = [
+  ["You start", "Thinking like a marketer",
+   "Strategy, psychology, funnels & fundamentals."],
+  ["You start", "Creating like a modern marketer",
+   "Content, creative & AI-assisted production."],
+  ["You start", "Acquiring like a performance marketer",
+   "Google, Meta, SEO, GEO & paid acquisition."],
+  ["You start", "Automating like a system builder",
+   "Workflows, CRM, AI agents & marketing automation."],
+  ["You start", "Measuring like an analyst",
+   "GA4, attribution, dashboards, CRO & ROI."],
+  ["You leave with", "Proof of work most companies are actually looking for",
+   "Projects, internship, capstone & portfolio."],
+];
+
 const FAQS = [
   ["What makes IDM different from other digital marketing courses?",
    "Most courses hand you recorded lectures and a certificate. This is a live online, execution-first program run out of a working agency — every session is delivered live, and you spend most of your time actually building campaigns, with mentors reviewing your work."],

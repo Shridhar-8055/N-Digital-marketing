@@ -53,6 +53,23 @@ if ($('modulePreview')) {
     </div>`).join('');
 }
 
+/* ── "what happens when you join" progression (index.html) ──────── */
+if ($('journey')) {
+  const last = JOURNEY.length - 1;
+  $('journey').innerHTML = JOURNEY.map(([lead, becomes, topics], i) => {
+    const payoff = i === last;
+    return `
+    <li class="journey-step reveal ${payoff ? 'is-payoff' : ''}">
+      <span class="journey-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
+      <div class="min-w-0">
+        <p class="text-[.8rem] tracking-[.18em] uppercase ${payoff ? 'text-accent' : 'text-cream/40'} mb-2">${esc(lead)}</p>
+        <h3 class="font-display text-[1.15rem] sm:text-[1.45rem] leading-snug ${payoff ? 'text-accent' : 'text-cream'}">${esc(becomes)}</h3>
+        <p class="mt-2.5 text-[.94rem] text-cream/60">${esc(topics)}</p>
+      </div>
+    </li>`;
+  }).join('');
+}
+
 /* ── the five layers (index.html) ───────────────────────────────── */
 if ($('layerStack')) {
   $('layerStack').innerHTML = LAYERS.map(([num, name, items]) => `
