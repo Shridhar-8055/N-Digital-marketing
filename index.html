@@ -319,9 +319,11 @@
       <p class="reveal mt-5 text-cream/65">Placement support included. No additional fee.</p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-5">
+    <!-- single card now; capped and centred, because one pricing card
+         stretched across a full-width section reads as a banner, not a price -->
+    <div class="max-w-2xl mx-auto">
 
-      <article class="reveal rounded-3xl border border-brandLift bg-gradient-to-b from-brand/30 to-transparent p-9">
+      <article class="reveal rounded-3xl border border-brandLift bg-gradient-to-b from-brand/30 to-transparent p-9 sm:p-10">
         <p class="eyebrow mb-4">Program Fee</p>
         <!-- [[TODO: your program fee]] -->
         <span class="font-display text-[3rem] leading-none block">₹[[TODO]]</span>
@@ -329,28 +331,14 @@
 
         <ul class="space-y-3.5 text-[.94rem] text-cream/70 border-t border-line pt-7">
           <li class="flex gap-3"><span class="text-accent shrink-0">✓</span><span><span class="text-cream font-medium">Batch Zero privilege</span> — ₹0 placement fee</span></li>
-          <li class="flex gap-3"><span class="text-accent shrink-0">✓</span><span><span class="text-cream font-medium">EMI available</span> at 0% interest</span></li>
+          <!-- [[TODO: "lifetime" is a permanent commitment. Make sure you are willing
+               to honour it for every graduate, indefinitely, before it goes live.]] -->
+          <li class="flex gap-3"><span class="text-accent shrink-0">✓</span><span><span class="text-cream font-medium">Lifetime free mentorship</span> — for every graduate</span></li>
           <li class="flex gap-3"><span class="text-accent shrink-0">✓</span><span><span class="text-cream font-medium">Exclusive access</span> — 20 seats only</span></li>
           <li class="flex gap-3"><span class="text-accent shrink-0">✓</span><span><span class="text-cream font-medium">Full refund</span> of the application fee if not selected</span></li>
         </ul>
 
-        <a href="#apply" class="btn-primary block text-center mt-8 rounded-full px-8 py-4 font-semibold">Apply Now</a>
-      </article>
-
-      <article class="reveal card rounded-3xl p-9">
-        <p class="eyebrow mb-4">Registration Fee</p>
-        <!-- [[TODO: your application fee]] -->
-        <span class="font-display text-[3rem] leading-none block">₹[[TODO]]</span>
-        <p class="text-[.86rem] text-cream/60 mt-3 mb-7">Including GST · Refunded in full if you're not selected</p>
-
-        <ul class="space-y-3.5 text-[.94rem] text-cream/70 border-t border-line pt-7">
-          <li class="flex items-center justify-between gap-4"><span>Applications close</span><span class="text-cream font-medium">[[TODO: date]]</span></li>
-          <li class="flex items-center justify-between gap-4"><span>Batch starts</span><span class="text-cream font-medium">Sept 7, 2026</span></li>
-          <li class="flex items-center justify-between gap-4"><span>Total seats</span><span class="text-cream font-medium">20</span></li>
-          <li class="flex items-center justify-between gap-4"><span>Format</span><span class="text-cream font-medium">Online · 4 months</span></li>
-        </ul>
-
-        <a href="#apply" class="btn-ghost block text-center mt-8 rounded-full px-8 py-4 font-semibold text-cream/70">Register Now</a>
+        <a href="#apply" class="btn-primary block text-center mt-8 rounded-full px-8 py-4 font-semibold">Talk to Mentor</a>
       </article>
 
     </div>
