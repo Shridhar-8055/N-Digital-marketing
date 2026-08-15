@@ -447,8 +447,9 @@
         </div>
       </div>
 
-      <!-- [[TODO: FORM ENDPOINT — point action= at Formspree / Web3Forms / your handler]] -->
-      <form class="reveal card rounded-2xl p-7 sm:p-9 space-y-4 w-full xl:max-w-2xl" action="[[TODO: FORM ENDPOINT]]" method="POST">
+      <!-- Submitted by site.js to LEADS_ENDPOINT (Google Sheet). The action
+           is kept as a no-JS fallback target, not the primary path. -->
+      <form id="applyForm" class="reveal card rounded-2xl p-7 sm:p-9 space-y-4 w-full xl:max-w-2xl" method="POST">
         <div>
           <label for="f-name" class="block text-[.85rem] font-medium mb-2">Name</label>
           <input id="f-name" name="name" type="text" required
@@ -494,9 +495,18 @@
             </label>
           </div>
         </fieldset>
+        <p id="applyError" class="modal-error" hidden></p>
         <button type="submit" class="btn-primary w-full rounded-full px-8 py-4 font-semibold mt-2">Join Waitlist</button>
         <p class="text-[.78rem] text-cream/45 text-center">We'll only use your details to contact you about this program.</p>
       </form>
+
+      <div id="applyDone" class="reveal card rounded-2xl p-9 text-center w-full xl:max-w-2xl" hidden>
+        <p class="font-display text-[1.35rem] text-accent mb-3">You're on the list.</p>
+        <p class="text-[.95rem] text-cream/65 leading-relaxed">
+          We review applications in the order they arrive and will be in touch
+          with the next steps, the full syllabus and your interview slot.
+        </p>
+      </div>
 
     </div>
   </div>

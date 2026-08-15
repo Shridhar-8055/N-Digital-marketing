@@ -319,11 +319,41 @@ if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
    spaces in a filename have to be percent-encoded in every reference, and
    one missed escape is a silent 404. */
 const BROCHURE_FILE = 'public/IDM-Course-Syllabus.pdf';
-/* [[TODO: LEAD ENDPOINT — Formspree / Web3Forms / your own handler.
-   While this is empty the details are NOT sent anywhere: the download
-   still works, but you lose the lead, which is the entire point of
-   gating it. ]] */
-const BROCHURE_ENDPOINT = '';
+/* ══════════════════════════════════════════════════════════════════
+   LEAD CAPTURE -> GOOGLE SHEET
+   Both the brochure modal and the application form post here.
+   Setup is in google-apps-script.gs — deploy it, paste the /exec URL
+   below, and rows start appearing in the sheet.
+   [[TODO: paste your Apps Script Web App URL here. While it is empty
+   nothing is recorded: the forms still work for the visitor, but the
+   lead is discarded. ]]
+══════════════════════════════════════════════════════════════════ */
+const LEADS_ENDPOINT = '';
+
+/* Apps Script answers a POST with a 302 to a googleusercontent URL that
+   carries no CORS headers, so a normal fetch rejects AFTER the row has
+   already been written — a success that looks like a failure. no-cors
+   avoids that: the request is sent, the response is simply opaque.
+   URL-encoded keeps it a simple request, so there is no preflight
+   (Apps Script cannot answer an OPTIONS preflight anyway). */
+const sendLead = async fields => {
+  if (!LEADS_ENDPOINT) return false;
+  try {
+    await fetch(LEADS_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+      body: new URLSearchParams({
+        ...fields,
+        page: location.pathname.split('/').pop() || 'index.html',
+        submitted: new Date().toISOString(),
+      }).toString(),
+    });
+    return true;
+  } catch {
+    return false;   /* never surfaced to the user; see the callers */
+  }
+};
 
 if (document.querySelector('[data-brochure]')) {
   const dlg = document.createElement('dialog');
@@ -416,18 +446,14 @@ if (document.querySelector('[data-brochure]')) {
     submit.disabled = true;
     submit.textContent = 'Preparing…';
 
-    const data = new FormData(form);
-    data.append('source', 'brochure-download');
-    data.append('page', location.pathname.split('/').pop() || 'index.html');
-
-    if (BROCHURE_ENDPOINT) {
-      try {
-        await fetch(BROCHURE_ENDPOINT, {method: 'POST', body: data});
-      } catch {
-        /* Never block the download on the lead POST failing — the user
-           did their part, and a lost lead is our problem, not theirs. */
-      }
-    }
+    /* Never block the download on the lead POST — the user did their
+       part, and a lost lead is our problem, not theirs. */
+    await sendLead({
+      source: 'brochure-download',
+      name:   form.querySelector('#b-name').value.trim(),
+      email:  form.querySelector('#b-email').value.trim(),
+      phone:  form.querySelector('#b-phone').value.trim(),
+    });
 
     const sent = await deliver();
     form.hidden = true;
@@ -457,3 +483,49 @@ document.querySelectorAll('video[data-src]').forEach(v => {
   }, {rootMargin: '200px'});
   io2.observe(v);
 });
+
+/* ── application form -> the same sheet ─────────────────────────── */
+const applyForm = $('applyForm');
+if (applyForm) {
+  const err  = $('applyError');
+  const done = $('applyDone');
+  const btn  = applyForm.querySelector('button[type=submit]');
+
+  applyForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    err.hidden = true;
+
+    if (!applyForm.checkValidity()) {
+      err.textContent = 'Please complete every field before submitting.';
+      err.hidden = false;
+      applyForm.reportValidity();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const get = sel => (applyForm.querySelector(sel) || {}).value || '';
+    const relocate = applyForm.querySelector('input[name=relocate]:checked');
+    const ok = await sendLead({
+      source:   'application',
+      name:     get('#f-name').trim(),
+      email:    get('#f-email').trim(),
+      phone:    get('#f-phone').trim(),
+      status:   get('#f-status'),
+      city:     get('#f-city').trim(),
+      relocate: relocate ? relocate.value : '',
+    });
+
+    /* An opaque response cannot be read, so `ok` only tells us the
+       request left the browser. If no endpoint is configured at all we
+       still confirm to the user rather than blaming them for our gap —
+       but that case is loud in the console so it gets noticed. */
+    if (!LEADS_ENDPOINT) {
+      console.warn('[IDM] LEADS_ENDPOINT is empty — this application was NOT recorded.');
+    }
+    applyForm.hidden = true;
+    done.hidden = false;
+    done.scrollIntoView({block: 'center', behavior: 'smooth'});
+  });
+}
