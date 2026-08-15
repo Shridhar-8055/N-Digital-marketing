@@ -18,23 +18,36 @@ const SKILLS = ["AI-First Marketing","Generative AI","Prompt Engineering","SEO",
 /* ── SUCCESS STORIES carousel ─────────────────────────────────────
    [name, photo, panel tint, company, from, to, package]
 
-   photo: a cut-out portrait in public/stories/. Leave it empty and the
-   card falls back to the person's initials, so the layout holds while
-   you gather the pictures.
+   ⚠ SAMPLE DATA. Every name, employer and salary below was made up to
+   fill the layout, and the portraits are AI-generated, not photographs
+   of graduates. Under a heading that reads "Real Stories. Real Impact.
+   Real Careers." these are placement claims: publishing them as they
+   stand is a false statement about outcomes, and naming an employer
+   alongside an invented hire is a statement about that employer too.
 
-   [[TODO: EVERY FIELD HERE IS A PLACEMENT CLAIM. A named graduate, a
-   named employer and a salary figure are the most checkable statements
-   on the whole site, and the employer can object to being listed.
-   Publish a card only when: the person has consented in writing, the
-   employer is happy to be named, and the package is the real figure.
-   Delete any row you cannot back. Nothing here is real yet. ]]
+   Before this section goes live, either:
+     · replace every row with a real graduate who has consented in
+       writing, an employer happy to be named, and the true package, or
+     · delete the section.
+
+   Company names here are deliberately invented rather than real brands,
+   so nothing implicates a company that never hired anyone.
    ────────────────────────────────────────────────────────────────── */
 const STORIES = [
-  ["[[TODO: Name]]", "", "#7a0000", "[[TODO: Company]]", "Fresher", "[[TODO: Role]]", "[[TODO]] LPA"],
-  ["[[TODO: Name]]", "", "#9c1111", "[[TODO: Company]]", "Fresher", "[[TODO: Role]]", "[[TODO]] LPA"],
-  ["[[TODO: Name]]", "", "#5e0a0a", "[[TODO: Company]]", "Fresher", "[[TODO: Role]]", "[[TODO]] LPA"],
-  ["[[TODO: Name]]", "", "#8d1b1b", "[[TODO: Company]]", "Fresher", "[[TODO: Role]]", "[[TODO]] LPA"],
-  ["[[TODO: Name]]", "", "#700c0c", "[[TODO: Company]]", "Fresher", "[[TODO: Role]]", "[[TODO]] LPA"],
+  ["Arjun Menon",      "public/stories/s1.jpg", "#7a0000", "Northline Digital",
+   "Fresher", "Performance Marketing Executive", "3.2 LPA"],
+  ["Divya Raghavan",   "public/stories/s2.jpg", "#9c1111", "Brightfold Media",
+   "Fresher", "SEO & GEO Specialist", "4.5 LPA"],
+  ["Rohit Verma",      "public/stories/s3.jpg", "#5e0a0a", "Cluster Labs",
+   "Fresher", "Social Media Manager", "3.8 LPA"],
+  ["Meera Krishnan",   "public/stories/s4.jpg", "#8d1b1b", "Trailhead Growth",
+   "Fresher", "Marketing Automation Specialist", "5.0 LPA"],
+  ["Aditya Shetty",    "public/stories/s5.jpg", "#700c0c", "Meridian Commerce",
+   "Fresher", "Marketing Analyst", "4.2 LPA"],
+  ["Nithya Balan",     "public/stories/s6.jpg", "#6b0f0f", "Papercup Studio",
+   "Fresher", "AI Content Strategist", "3.6 LPA"],
+  ["Karthik Iyer",     "public/stories/s7.jpg", "#a01717", "Lightbase Analytics",
+   "Fresher", "CRO Specialist", "5.4 LPA"],
 ];
 
 /* ── HEADLINE NUMBERS — home page stat band ───────────────────────
