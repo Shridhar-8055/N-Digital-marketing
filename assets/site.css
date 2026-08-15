@@ -118,6 +118,7 @@ details[open] .chev{transform:rotate(45deg);}
   nav a::after{transition:none;}
   .modal[open]{animation:none;}
   .hero-figure{animation:none;}
+  .seat-pill,.seat-pill::before,.seat-pill::after,.seat-dot{animation:none;}
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -204,6 +205,52 @@ nav a.btn-primary::after{display:none;}
   font-size:clamp(2.1rem,4vw,3.1rem);
   background:linear-gradient(180deg,var(--cream) 20%,var(--accent) 60%,rgba(245,245,220,.55));
   -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* ── "20 seats only" pill ───────────────────────────────────────────
+   Three layers reading as scarcity: a light tracing the border, a sheen
+   crossing the face, and the whole pill breathing. Registering the angle
+   as a custom property is what lets the conic gradient interpolate — a
+   plain custom property would jump rather than sweep.
+   ─────────────────────────────────────────────────────────────────── */
+@property --pill-angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
+
+.seat-pill{
+  position:relative;border-radius:9999px;
+  animation:pill-breathe 3.8s ease-in-out infinite;
+}
+/* the travelling border light, masked to a ring so it does not flood the pill */
+.seat-pill::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1.6px;
+  pointer-events:none;
+  background:conic-gradient(from var(--pill-angle),
+    transparent 0deg, rgba(156,17,17,.35) 45deg,
+    var(--brand-lift) 88deg, var(--accent) 122deg, var(--brand-lift) 156deg,
+    rgba(156,17,17,.35) 200deg, transparent 250deg, transparent 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+          mask-composite:exclude;
+  animation:pill-spin 3.8s linear infinite;
+}
+/* sheen sweeping the face, timed to land just after the light passes the top */
+.seat-pill::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(100deg,transparent 38%,rgba(245,245,220,.20) 50%,transparent 62%);
+  background-size:260% 100%;
+  animation:pill-sheen 3.8s ease-in-out infinite;
+}
+@keyframes pill-spin{to{--pill-angle:360deg;}}
+@keyframes pill-sheen{0%,55%{background-position:190% 0}100%{background-position:-90% 0}}
+@keyframes pill-breathe{
+  0%,100%{box-shadow:0 0 0 0 rgba(156,17,17,.0);}
+  50%    {box-shadow:0 0 24px 1px rgba(156,17,17,.45);}
+}
+/* the live dot, brighter than a plain ping */
+.seat-dot{animation:seat-dot 3.8s ease-in-out infinite;}
+@keyframes seat-dot{
+  0%,100%{box-shadow:0 0 0 0 rgba(245,245,220,.55);}
+  50%    {box-shadow:0 0 10px 2px rgba(245,245,220,.85);}
 }
 
 /* ── intro video beside the join steps ──────────────────────────── */
