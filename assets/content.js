@@ -46,11 +46,11 @@ const LAYERS = [
 
 const FAQS = [
   ["What makes IDM different from other digital marketing courses?",
-   "Most courses hand you recorded lectures and a certificate. This is an offline, execution-first program run inside a working agency — you spend the majority of every day actually building campaigns, with mentors reviewing your work."],
+   "Most courses hand you recorded lectures and a certificate. This is a live online, execution-first program run out of a working agency — every session is delivered live, and you spend most of your time actually building campaigns, with mentors reviewing your work."],
   ["Is this course beginner-friendly?",
-   "Yes. We assume zero marketing background and start from fundamentals. What we do expect is that you can commit full-time for the length of the program."],
+   "Yes. We assume zero marketing background and start from fundamentals. What we do expect is that you show up live for the sessions and do the campaign work between them — the programme only works if you execute."],
   ["How long is the course, and what's the format?",
-   "20 weeks, fully offline. Each weekday is 2 hours of expert-led teaching, 2 hours of mentor-assisted work, and 6 hours of supervised practice."],
+   "18 weeks, fully online and fully live — no recorded lectures. 120 hours of live training in total, roughly 7 hours a week, split between expert-led sessions, mentor-assisted work and supervised practice. [[TODO: confirm the session days and timings.]]"],
   ["Will I get a certificate after completion?",
    "Yes — you receive a completion certificate. Far more useful, though, is the portfolio of live campaign work you'll have built by the end."],
   ["Will I get practical experience during the course?",
@@ -60,7 +60,7 @@ const FAQS = [
   ["What tools and platforms will I learn?",
    "Meta Ads Manager, Google Ads, GA4, Google Tag Manager, Looker Studio, Search Console, SEMrush/Ahrefs, Mailchimp or Klaviyo, Zapier, HubSpot, Canva and Figma — plus current AI tooling."],
   ["Can I join if I'm a student or a working professional?",
-   "Students, yes. Working professionals should note this is a full-time offline commitment — [[TODO: state your policy on part-time attendance]]."],
+   "Both. At roughly 7 hours of live training a week over 18 weeks, it is built to run alongside a job or a degree. [[TODO: confirm the session days and timings — evenings, weekends, or both.]]"],
   ["How can I enroll in the program?",
    "Submit the application form on this page and pay the registration fee. Shortlisted applicants are interviewed, and the program fee is only payable after you're selected."],
   ["What support will I get after completing the course?",
@@ -98,7 +98,7 @@ const ROLES = [
    "Run your own client roster — with the pricing, proposals and delivery systems taught explicitly in Module 16.",
    ["Pricing","Proposals","Client comms","Retainers"]],
   ["Agency Founder",
-   "Productise what you've learned and build a team around it. You'll have seen an agency run from the inside for 20 weeks.",
+   "Productise what you've learned and build a team around it. You'll have seen an agency run from the inside for 18 weeks.",
    ["Service design","Hiring","Ops","Sales"]],
 ];
 
@@ -111,7 +111,7 @@ const PATHS = [
    "Build an independent client base. We cover the unglamorous half — scoping, pricing, contracts and getting paid on time.",
    ["How to price work without underselling","Proposals and scoping that hold up","Finding your first three clients","Delivering solo without burning out"]],
   ["Build Your Own",
-   "Start your own agency or grow your own venture using the same systems you spent 20 weeks running.",
+   "Start your own agency or grow your own venture using the same systems you spent 18 weeks running.",
    ["Positioning and service design","Productised offers and retainers","When and how to make your first hire","Ops and reporting that scale"]],
 ];
 
