@@ -310,10 +310,11 @@ if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   BROCHURE — gated download
-   Any element with [data-brochure] opens the modal. The file only
-   downloads after the form is submitted, so every download is a
-   captured lead.
+   LEAD MODAL — two variants, one dialog
+   [data-brochure] opens the brochure variant, which hands over the PDF
+   once the form is submitted. The 5s timed popup opens a general enquiry
+   variant instead: same fields, same sheet, no download. VARIANTS below
+   holds the copy for each.
 ══════════════════════════════════════════════════════════════════ */
 /* The 10-page course syllabus. Renamed off "IDM course syllabus.pdf" —
    spaces in a filename have to be percent-encoded in every reference, and
@@ -356,17 +357,38 @@ const sendLead = async fields => {
   }
 };
 
+const VARIANTS = {
+  'brochure-button': {
+    eyebrow:  'Programme brochure',
+    title:    'Get the Full Brochure',
+    body:     'The complete 12-module syllabus, the tool list, the internship structure.',
+    cta:      'Download Brochure',
+    working:  'Preparing…',
+    download: true,
+    doneTitle:'Thanks — check your downloads.',
+    doneBody: "Your brochure is downloading. We'll be in touch shortly.",
+  },
+  'auto-popup': {
+    eyebrow:  'Talk to a mentor',
+    title:    'Have a Question First?',
+    body:     'Leave your details and a mentor will call you back with the session timings, the fee and honest answers — before you commit to anything.',
+    cta:      'Request a Callback',
+    working:  'Sending…',
+    download: false,
+    doneTitle:"Thanks — we've got your details.",
+    doneBody: 'A mentor will call you back shortly.',
+  },
+};
+
 if (document.querySelector('[data-brochure]')) {
   const dlg = document.createElement('dialog');
   dlg.id = 'brochureModal';
   dlg.className = 'modal';
   dlg.innerHTML = `
     <button class="modal-x" type="button" aria-label="Close">&times;</button>
-    <p class="eyebrow mb-3">Programme brochure</p>
-    <h2 class="font-display text-[1.5rem] sm:text-[1.8rem] leading-snug mb-2">Get the Full Brochure</h2>
-    <p class="text-[.94rem] text-cream/65 leading-relaxed mb-7">
-      The complete 12-module syllabus, the tool list, the internship structure.
-    </p>
+    <p class="eyebrow mb-3" id="mEyebrow"></p>
+    <h2 class="font-display text-[1.5rem] sm:text-[1.8rem] leading-snug mb-2" id="mTitle"></h2>
+    <p class="text-[.94rem] text-cream/65 leading-relaxed mb-7" id="mBody"></p>
 
     <form id="brochureForm" novalidate>
       <label class="modal-label" for="b-name">Name</label>
@@ -389,7 +411,7 @@ if (document.querySelector('[data-brochure]')) {
     </form>
 
     <div id="brochureDone" class="text-center py-6" hidden>
-      <p class="font-display text-[1.2rem] text-accent mb-2">Thanks — check your downloads.</p>
+      <p class="font-display text-[1.2rem] text-accent mb-2" id="brochureDoneTitle"></p>
       <p class="text-[.92rem] text-cream/65" id="brochureDoneMsg"></p>
     </div>`;
   document.body.appendChild(dlg);
@@ -403,8 +425,12 @@ if (document.querySelector('[data-brochure]')) {
   let opener = 'brochure-button';       /* recorded as Source in the sheet */
   const open = (via) => {
     opener = via || 'brochure-button';
+    const v = VARIANTS[opener] || VARIANTS['brochure-button'];
+    dlg.querySelector('#mEyebrow').textContent = v.eyebrow;
+    dlg.querySelector('#mTitle').textContent   = v.title;
+    dlg.querySelector('#mBody').textContent    = v.body;
     errBox.hidden = true; done.hidden = true; form.hidden = false;
-    submit.disabled = false; submit.textContent = 'Download Brochure';
+    submit.disabled = false; submit.textContent = v.cta;
     dlg.showModal();
     dlg.querySelector('#b-name').focus();
   };
@@ -478,8 +504,9 @@ if (document.querySelector('[data-brochure]')) {
       return;
     }
 
+    const v = VARIANTS[opener] || VARIANTS['brochure-button'];
     submit.disabled = true;
-    submit.textContent = 'Preparing…';
+    submit.textContent = v.working;
 
     /* Never block the download on the lead POST — the user did their
        part, and a lost lead is our problem, not theirs. */
@@ -490,12 +517,15 @@ if (document.querySelector('[data-brochure]')) {
       phone:  form.querySelector('#b-phone').value.trim(),
     });
 
-    store('localStorage', DONE_KEY, '1');   /* they have it; stop asking */
-    const sent = await deliver();
+    store('localStorage', DONE_KEY, '1');   /* they responded; stop asking */
+
+    /* only the brochure variant hands over a file */
+    const sent = v.download ? await deliver() : true;
     form.hidden = true;
     done.hidden = false;
+    dlg.querySelector('#brochureDoneTitle').textContent = v.doneTitle;
     doneMsg.textContent = sent
-      ? "Your brochure is downloading. We'll be in touch shortly."
+      ? v.doneBody
       : "We couldn't reach the file just now — we'll email the syllabus to you shortly.";
   });
 }
