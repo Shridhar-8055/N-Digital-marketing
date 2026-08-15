@@ -344,19 +344,20 @@ nav a.btn-primary::after{display:none;}
 }
 .compare{width:100%;border-collapse:collapse;text-align:left;}
 
+/* white header band, so the column titles read off the dark body */
 .compare thead th{
-  background:var(--surface-2);
-  font-family:'Inter',sans-serif;font-size:.74rem;font-weight:600;
+  background:#fff;
+  font-family:'Inter',sans-serif;font-size:.74rem;font-weight:700;
   letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(248,247,242,.55);
+  color:rgba(26,20,20,.55);
   padding:1.05rem 1.25rem;
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid rgba(26,20,20,.14);
   white-space:nowrap;
 }
-.compare thead th.is-idm{
-  color:var(--accent);
-  background:linear-gradient(180deg,rgba(156,17,17,.42),rgba(156,17,17,.26));
-}
+.compare thead th + th{border-left:1px solid rgba(26,20,20,.10);}
+/* the IDM header stays white but takes the brand colour, so the column
+   it heads is still identifiable from the top down */
+.compare thead th.is-idm{color:var(--brand);}
 
 .compare tbody th{
   font-family:'Sanchez',Georgia,serif;font-weight:400;
