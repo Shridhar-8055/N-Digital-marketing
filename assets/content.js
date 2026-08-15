@@ -15,6 +15,28 @@ const SKILLS = ["AI-First Marketing","Generative AI","Prompt Engineering","SEO",
   "Email & WhatsApp Automation","AI Agents","No-Code Automation","Martech & CRM",
   "Conversion Optimisation","Influencer Marketing","E-commerce"];
 
+/* ── SUCCESS STORIES carousel ─────────────────────────────────────
+   [name, photo, panel tint, company, from, to, package]
+
+   photo: a cut-out portrait in public/stories/. Leave it empty and the
+   card falls back to the person's initials, so the layout holds while
+   you gather the pictures.
+
+   [[TODO: EVERY FIELD HERE IS A PLACEMENT CLAIM. A named graduate, a
+   named employer and a salary figure are the most checkable statements
+   on the whole site, and the employer can object to being listed.
+   Publish a card only when: the person has consented in writing, the
+   employer is happy to be named, and the package is the real figure.
+   Delete any row you cannot back. Nothing here is real yet. ]]
+   ────────────────────────────────────────────────────────────────── */
+const STORIES = [
+  ["[[TODO: Name]]", "", "#7a0000", "[[TODO: Company]]", "Fresher", "[[TODO: Role]]", "[[TODO]] LPA"],
+  ["[[TODO: Name]]", "", "#9c1111", "[[TODO: Company]]", "Fresher", "[[TODO: Role]]", "[[TODO]] LPA"],
+  ["[[TODO: Name]]", "", "#5e0a0a", "[[TODO: Company]]", "Fresher", "[[TODO: Role]]", "[[TODO]] LPA"],
+  ["[[TODO: Name]]", "", "#8d1b1b", "[[TODO: Company]]", "Fresher", "[[TODO: Role]]", "[[TODO]] LPA"],
+  ["[[TODO: Name]]", "", "#700c0c", "[[TODO: Company]]", "Fresher", "[[TODO: Role]]", "[[TODO]] LPA"],
+];
+
 /* ── HEADLINE NUMBERS — home page stat band ───────────────────────
    [value, suffix, label]  — counted up when the band scrolls into view.
    Every figure here comes from the syllabus.

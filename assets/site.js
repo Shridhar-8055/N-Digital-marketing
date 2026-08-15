@@ -9,6 +9,72 @@
 const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $   = id => document.getElementById(id);
 
+/* ── success stories carousel ───────────────────────────────────── */
+if ($('storyTrack')) {
+  const initials = n => n.replace(/\[\[.*?\]\]/g, '').trim().split(/\s+/)
+                         .filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('') || '?';
+
+  $('storyTrack').innerHTML = STORIES.map(([name, photo, tint, company, from, to, pkg]) => `
+    <article class="story">
+      <div class="story-photo" style="background:${esc(tint)}">
+        ${photo
+          ? `<img src="${esc(photo)}" alt="${esc(name)}" loading="lazy" decoding="async">`
+          : `<span class="story-initials" aria-hidden="true">${esc(initials(name))}</span>`}
+      </div>
+      <div class="story-body">
+        <p class="story-name">${esc(name)}</p>
+        <p class="story-company">${esc(company)}</p>
+        <div class="story-move">
+          <span class="story-from">${esc(from)}</span>
+          <span class="story-arrow" aria-hidden="true">&rarr;</span>
+          <span class="story-to">${esc(to)}</span>
+        </div>
+        <p class="story-pkg"><span>Package</span> <strong>${esc(pkg)}</strong></p>
+      </div>
+    </article>`).join('')
+    + `
+    <article class="story story-cta">
+      <p class="text-[.95rem] text-inkDark/70 mb-5">Want to see more inspiring stories?</p>
+      <a href="career.html" class="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3 text-[.9rem] font-semibold">
+        View All Success Stories <span aria-hidden="true">&rarr;</span>
+      </a>
+    </article>`;
+
+  /* the small stack of faces above the carousel */
+  if ($('storyFaces')) {
+    $('storyFaces').innerHTML = STORIES.slice(0, 5).map(([name, photo, tint]) => `
+      <span class="story-face" style="background:${esc(tint)}">
+        ${photo ? `<img src="${esc(photo)}" alt="" loading="lazy">` : esc(initials(name))}
+      </span>`).join('');
+  }
+
+  /* ── carousel controls ───────────────────────────────────────────
+     Scrolls by one card, measured from the live layout rather than a
+     hardcoded width, so it stays correct as the card resizes across
+     breakpoints. */
+  const track = $('storyTrack');
+  const bar   = $('storyProgress');
+  const step  = () => {
+    const card = track.querySelector('.story');
+    if (!card) return track.clientWidth;
+    const gap = parseFloat(getComputedStyle(track).columnGap || '0') || 0;
+    return card.getBoundingClientRect().width + gap;
+  };
+  const paintBar = () => {
+    if (!bar) return;
+    const max = track.scrollWidth - track.clientWidth;
+    bar.style.width = (max > 8 ? Math.min(100, (track.scrollLeft / max) * 100) : 100) + '%';
+  };
+  const go = dir => track.scrollBy({left: dir * step(), behavior: 'smooth'});
+
+  const prev = $('storyPrev'), next = $('storyNext');
+  if (prev) prev.addEventListener('click', () => go(-1));
+  if (next) next.addEventListener('click', () => go(1));
+  track.addEventListener('scroll', paintBar, {passive: true});
+  addEventListener('resize', paintBar, {passive: true});
+  paintBar();
+}
+
 /* ── headline number band, counts up on first view ──────────────── */
 if ($('statBand')) {
   $('statBand').innerHTML = STATS.map(([value, suffix, label]) => `

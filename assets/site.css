@@ -318,6 +318,101 @@ nav a.btn-primary::after{display:none;}
   margin:.25rem 0 0;font-size:.85rem;color:#ff9a97;
 }
 
+/* ── success stories carousel ───────────────────────────────────────
+   Mirrors the reference layout: tinted photo panel on top, white detail
+   panel below, cards peeking at both edges, arrows and a progress bar.
+   Palette is IDM's rather than the reference's yellow.
+   ─────────────────────────────────────────────────────────────────── */
+.stories-wrap{position:relative;}
+
+/* faces stacked above the heading */
+.story-faces{display:flex;justify-content:center;}
+.story-face{
+  width:2.6rem;height:2.6rem;border-radius:9999px;margin-left:-.7rem;
+  display:grid;place-items:center;overflow:hidden;
+  border:2px solid #fff;box-shadow:0 2px 8px rgba(26,20,20,.18);
+  font-family:'Sanchez',Georgia,serif;font-size:.8rem;color:var(--cream);
+}
+.story-face:first-child{margin-left:0;}
+.story-face img{width:100%;height:100%;object-fit:cover;}
+
+/* the rail */
+.story-track{
+  display:flex;gap:1.25rem;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scroll-padding:0 1rem;
+  padding:.5rem .25rem 1.25rem;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.story-track::-webkit-scrollbar{display:none;}
+
+.story{
+  flex:0 0 clamp(15rem,80vw,17.5rem);scroll-snap-align:center;
+  background:#fff;border:1px solid rgba(26,20,20,.10);border-radius:1rem;
+  overflow:hidden;box-shadow:0 10px 30px -18px rgba(26,20,20,.35);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.story:hover{transform:translateY(-4px);box-shadow:0 20px 44px -20px rgba(122,0,0,.42);}
+
+.story-photo{
+  position:relative;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden;
+}
+.story-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+.story-initials{
+  font-family:'Sanchez',Georgia,serif;font-size:2.6rem;
+  color:rgba(248,247,242,.55);letter-spacing:.05em;
+}
+
+.story-body{padding:1.1rem 1.15rem 1.25rem;text-align:center;}
+.story-name{font-family:'Sanchez',Georgia,serif;font-size:1.02rem;color:var(--ink-dark);}
+.story-company{
+  margin-top:.4rem;font-size:.82rem;font-weight:600;color:var(--brand);
+  text-transform:uppercase;letter-spacing:.08em;
+}
+.story-move{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;
+  margin-top:.85rem;font-size:.78rem;color:rgba(26,20,20,.65);
+}
+.story-from{border:1px solid rgba(26,20,20,.16);border-radius:9999px;padding:.15rem .6rem;}
+.story-arrow{color:var(--brand);font-weight:700;}
+.story-to{font-weight:600;color:var(--ink-dark);}
+.story-pkg{
+  margin-top:.95rem;padding-top:.8rem;border-top:1px solid rgba(26,20,20,.10);
+  font-size:.8rem;color:rgba(26,20,20,.55);
+}
+.story-pkg strong{color:var(--brand);font-size:.95rem;margin-left:.35rem;}
+
+/* the closing call-to-action card */
+.story-cta{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:2rem 1.5rem;background:#fff;
+}
+.story-cta .btn-ghost{border-color:rgba(26,20,20,.2);color:var(--ink-dark);}
+.story-cta .btn-ghost:hover{border-color:var(--brand);background:rgba(122,0,0,.06);color:var(--brand);}
+
+/* arrows + progress */
+.story-nav{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:.5rem;}
+.story-btn{
+  width:2.4rem;height:2.4rem;flex:0 0 auto;border-radius:9999px;
+  display:grid;place-items:center;cursor:pointer;
+  background:#fff;border:1px solid rgba(26,20,20,.18);color:var(--ink-dark);
+  transition:border-color .2s ease,background .2s ease,color .2s ease;
+}
+.story-btn:hover{border-color:var(--brand);color:var(--brand);background:rgba(122,0,0,.05);}
+.story-rail{
+  position:relative;height:3px;width:min(16rem,45vw);border-radius:9999px;
+  background:rgba(26,20,20,.14);overflow:hidden;
+}
+.story-rail span{
+  position:absolute;inset:0 auto 0 0;width:0;border-radius:inherit;
+  background:linear-gradient(90deg,var(--brand),var(--brand-lift));
+  transition:width .18s linear;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .story{transition:none;}
+  .story-rail span{transition:none;}
+}
+
 /* ── frosted nav ──────────────────────────────────────────────────
    ONE state, never changes on scroll. The base is a near-opaque maroon
    rather than a white tint: a translucent light layer takes on whatever
