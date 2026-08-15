@@ -256,12 +256,12 @@ const JOURNEY = [
    [phase, weeks, [what you do]]
    ────────────────────────────────────────────────────────────────── */
 const INTERNSHIP = [
-  ["Applied Foundations", "Month 3 · Weeks 1–4",
+  ["Applied Foundations", "Weeks 1–6",
    ["Onboarding onto a live client or in-house brand account",
     "Own the SEO and social content calendar for one real brand, end to end",
     "Assist on live Google and Meta Ads campaigns under mentor review",
     "Weekly reporting through GA4 and Looker Studio dashboards"]],
-  ["Ownership & Specialisation", "Month 4 · Weeks 5–8",
+  ["Ownership & Specialisation", "Weeks 6–12",
    ["Independently run one channel (SEO, paid, social or automation) on a live account",
     "Build and ship one automation or AI-agent workflow used in production",
     "Prepare a full campaign performance review with optimisation recommendations",
@@ -283,13 +283,13 @@ const FAQS = [
   ["What makes IDM different from other digital marketing courses?",
    "Most courses still teach a 2019 syllabus of Facebook Ads, basic SEO and a bit of Canva, while agencies have moved to AI-first, automation-driven teams. Here, ads are one module out of twelve. AI, automation and Martech are the core, and the certificate only comes after a live capstone and real internship deliverables."],
   ["How long is the programme, and how is it structured?",
-   "Four months in total: a 60-day practical bootcamp of 120 live hours, then a 2-month internship. The bootcamp runs 2 hours a day, 5 days a week, as 12 modules of 5 days and 10 hours each."],
+   "Five months in total: a 60-day practical bootcamp of 120 live hours, then a 3-month internship. The bootcamp runs 2 hours a day, 5 days a week, as 12 modules of 5 days and 10 hours each."],
   ["What does a typical week look like?",
    "Day 1 is a concept session with a live demo. Day 2 is a guided hands-on lab on the same topic. Day 3 is tool-specific practice and a mini-task. Day 4 applies it to a real or simulated brand. Day 5 is review, doubt-clearing and a module assessment. Two hours a day, every day."],
   ["Is this course beginner-friendly?",
    "Yes. We start from fundamentals and assume no marketing background. The only entry requirement is that you are genuinely willing to do the work: there is 80% minimum attendance, graded assignments, a capstone review panel and mentor sign-off."],
   ["Is the internship guaranteed, and is it real work?",
-   "The 2-month internship is part of the programme, not an optional add-on. You work on live client or in-house brand accounts under mentor supervision, with weekly deliverables, a final presentation to faculty and a client stakeholder, and a performance appraisal."],
+   "The 3-month internship is part of the programme, not an optional add-on. You work on live client or in-house brand accounts under mentor supervision, with weekly deliverables, a final presentation to faculty and a client stakeholder, and a performance appraisal."],
   ["Do you offer placement assistance?",
    "You get structured career support: resume and LinkedIn work, portfolio building, mock interviews, client-facing communication practice, and an internship-to-opportunity pipeline."],
   ["What certifications will I actually hold at the end?",
@@ -342,13 +342,10 @@ const ROLES = [
 /* The three routes out of the programme. */
 const PATHS = [
   ["Get Your Dream Job",
-   "Walk into interviews with something to show: a capstone campaign defended to a panel, a shipped AI agent, and two months on live client accounts. Not a certificate and a hope.",
+   "Walk into interviews with something to show: a capstone campaign defended to a panel, a shipped AI agent, and three months on live client accounts. Not a certificate and a hope.",
    ["A capstone campaign presented to a review panel","30+ verifiable third-party certifications","Resume, LinkedIn and portfolio built with you","Mock interviews and client-communication practice"]],
-  ["Start Your Freelancing Journey",
-   "Build an independent client base. We cover the unglamorous half: scoping, pricing, contracts and getting paid on time.",
-   ["How to price work without underselling","Proposals and scoping that hold up","Finding your first three clients","Delivering solo without burning out"]],
   ["Build Your Own Agency",
-   "Start your own agency or grow your own venture using the same stack you spent four months running.",
+   "Start your own agency or grow your own venture using the same stack you spent five months running.",
    ["Positioning and service design","Productised offers and retainers","When and how to make your first hire","Ops and reporting that scale"]],
 ];
 
@@ -363,7 +360,7 @@ const SUPPORT = [
   ["Mock Interviews",
    "Practice rounds plus client-facing communication drills, so the first time you explain your ROAS number is not in a real interview."],
   ["Live Account Experience",
-   "Two months on real client or in-house brand accounts with mentor sign-off and a performance appraisal, not a simulated task list."],
+   "Three months on real client or in-house brand accounts with mentor sign-off and a performance appraisal, not a simulated task list."],
   ["Internship-to-Opportunity Pipeline",
    "Strong interns are routed toward openings as they arise."],
 ];
