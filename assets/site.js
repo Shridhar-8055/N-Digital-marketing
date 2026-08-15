@@ -9,6 +9,19 @@
 const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $   = id => document.getElementById(id);
 
+/* ── "typical course vs IDM" table ──────────────────────────────────
+   A real <table>, so the relationship between a row label and its two
+   values survives for screen readers. CSS restacks it into cards on
+   narrow screens; data-label carries the column name into that view. */
+if ($('compareBody')) {
+  $('compareBody').innerHTML = COMPARE.map(([dimension, typical, idm]) => `
+    <tr>
+      <th scope="row">${esc(dimension)}</th>
+      <td data-label="A typical course">${esc(typical)}</td>
+      <td class="is-idm" data-label="IDM">${esc(idm)}</td>
+    </tr>`).join('');
+}
+
 /* ── footer contact + social icons ──────────────────────────────── */
 if ($('footContact') || $('footSocial')) {
   const c = CONTACT;

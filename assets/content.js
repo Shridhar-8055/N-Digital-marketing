@@ -15,6 +15,26 @@ const SKILLS = ["AI-First Marketing","Generative AI","Prompt Engineering","SEO",
   "Email & WhatsApp Automation","AI Agents","No-Code Automation","Martech & CRM",
   "Conversion Optimisation","Influencer Marketing","E-commerce"];
 
+/* ── "A TYPICAL COURSE vs IDM" comparison ─────────────────────────
+   [dimension, what a typical course does, what IDM does]
+   The internship row says three months to match the rest of the site;
+   change it here and it changes wherever this table is rendered.
+   ────────────────────────────────────────────────────────────────── */
+const COMPARE = [
+  ['Mindset',            '“Which tool do I use?”',   '“What problem am I solving?”'],
+  ['AI',                 'Learn a few prompts',      'Use AI across the marketing workflow'],
+  ['Marketing',          'Learn individual channels','Understand the entire customer journey'],
+  ['Ads',                'Learn how to launch',      'Launch → measure → optimise'],
+  ['Automation',         'Maybe a brief introduction','Build workflows and AI-agent systems'],
+  ['Data',               'See reports',              'Understand GA4, attribution, dashboards and ROI'],
+  ['Martech',            'Often overlooked',         'CRM, customer data and lifecycle marketing'],
+  ['Practice',           'Follow examples',          'Build, submit, get assessed, improve'],
+  ['Portfolio',          'Certificate-heavy',        'Projects and a capstone'],
+  ['Industry exposure',  'The course ends',          '3-month structured internship'],
+  ['Career preparation', 'Resume advice',            'Resume, LinkedIn, portfolio and mock interviews'],
+  ['End result',         '“I completed a digital marketing course.”', '“Here is what I built.”'],
+];
+
 /* ── CONTACT & SOCIAL ─────────────────────────────────────────────
    Fill a social URL and its icon becomes a link; leave it empty and the
    icon renders dimmed and unclickable, so the footer never ships a dead
@@ -334,9 +354,6 @@ const ROLES = [
   ["CRO Specialist",
    "Turn existing traffic into more revenue through funnel analysis, experimentation and landing pages that actually convert.",
    ["A/B testing","Hotjar","VWO","Landing pages"]],
-  ["Freelancer or Agency Founder",
-   "Run your own client roster or build a team around it, with a live portfolio and a shipped AI agent to point at.",
-   ["Portfolio","Pricing","Client comms","Retainers"]],
 ];
 
 /* The three routes out of the programme. */

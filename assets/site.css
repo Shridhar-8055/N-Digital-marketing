@@ -329,6 +329,62 @@ nav a.btn-primary::after{display:none;}
 .legal p:last-child{margin-bottom:0;}
 .legal a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
 
+/* ── typical course vs IDM ──────────────────────────────────────────
+   Table on desktop; below 768px each row becomes a small card, because
+   three columns of prose on a phone is unreadable at any size that fits.
+   ─────────────────────────────────────────────────────────────────── */
+.compare{width:100%;border-collapse:collapse;text-align:left;}
+.compare thead th{
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(248,247,242,.45);
+  padding:0 1.1rem 1rem;
+}
+.compare thead th.is-idm{color:var(--accent);}
+.compare tbody th{
+  font-family:'Sanchez',Georgia,serif;font-weight:400;
+  font-size:.98rem;color:var(--cream);
+  padding:1rem 1.1rem;width:22%;vertical-align:top;
+}
+.compare tbody td{
+  font-size:.94rem;color:rgba(248,247,242,.62);
+  padding:1rem 1.1rem;vertical-align:top;
+}
+.compare tbody tr{border-top:1px solid var(--line);}
+.compare tbody tr:hover{background:rgba(156,17,17,.07);}
+
+/* the IDM column is the point of the table, so it is lit */
+.compare .is-idm{
+  color:var(--cream);font-weight:500;
+  background:linear-gradient(180deg,rgba(156,17,17,.16),rgba(156,17,17,.09));
+  border-left:1px solid rgba(156,17,17,.35);
+  border-right:1px solid rgba(156,17,17,.35);
+}
+.compare tbody tr:first-child .is-idm{border-top:1px solid rgba(156,17,17,.35);}
+.compare tbody tr:last-child  .is-idm{border-bottom:1px solid rgba(156,17,17,.35);}
+
+@media (max-width:767px){
+  .compare thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+  .compare, .compare tbody, .compare tr, .compare th, .compare td{display:block;width:auto;}
+  .compare tbody tr{
+    border:1px solid var(--line);border-radius:.9rem;
+    background:var(--surface);margin-bottom:.75rem;padding:.35rem .25rem;
+  }
+  .compare tbody th{
+    width:auto;padding:.75rem .9rem .25rem;font-size:1.02rem;color:var(--accent);
+  }
+  .compare tbody td{padding:.5rem .9rem;}
+  .compare tbody td::before{
+    content:attr(data-label);display:block;
+    font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+    color:rgba(248,247,242,.38);margin-bottom:.2rem;
+  }
+  .compare .is-idm{
+    border:0;border-radius:.6rem;margin:.25rem .55rem .6rem;
+    padding:.6rem .8rem;
+  }
+  .compare .is-idm::before{color:var(--accent);}
+}
+
 /* ── footer ─────────────────────────────────────────────────────── */
 .foot-title{
   font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
