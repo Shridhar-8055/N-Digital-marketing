@@ -432,6 +432,7 @@ if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
      brochure-button  hands over the PDF once the form is submitted
      auto-popup       the 5s timed general enquiry, no download
      placement        the carousel's "View All Success Stories" card
+     internship       the career page's "Apply for Internship" button
    All three share the fields and the sheet; VARIANTS holds the copy and
    whether a file is delivered. A trigger names its variant with
    data-lead, or uses data-brochure as shorthand for the first.
@@ -487,6 +488,16 @@ const VARIANTS = {
     download: true,
     doneTitle:'Thanks, check your downloads.',
     doneBody: "Your brochure is downloading. We'll be in touch shortly.",
+  },
+  'internship': {
+    eyebrow:  'Internship application',
+    title:    'Apply for the Internship',
+    body:     'Interns work on live client accounts under a mentor. Leave your details and our team will send the openings, what each one involves, and the next steps.',
+    cta:      'Submit Application',
+    working:  'Sending…',
+    download: false,
+    doneTitle:"Thanks, we've got your application.",
+    doneBody: 'Our team will reach out to you within 24 hours.',
   },
   'placement': {
     eyebrow:  'Placement support',
