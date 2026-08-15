@@ -122,19 +122,19 @@ const MODULES = [
 const LAYERS = [
   ["01", "Marketing",
    ["Digital Marketing Foundations","Customer Psychology","Funnels","Research","Branding","Strategy"],
-   "assets/layers/01-marketing.jpg"],
+   "public/layers/01-marketing.jpg"],
   ["02", "Acquisition",
    ["SEO","GEO","Social Media","Google Ads","Meta Ads","Programmatic Advertising"],
-   "assets/layers/02-acquisition.jpg"],
+   "public/layers/02-acquisition.jpg"],
   ["03", "Creation",
    ["AI Content","Copywriting","Creative Workflows","Video & Visual Content","Personalisation"],
-   "assets/layers/03-creation.jpg"],
+   "public/layers/03-creation.jpg"],
   ["04", "Automation",
    ["Email Automation","WhatsApp Automation","CRM Workflows","n8n","Zapier","Make","AI Agents"],
-   "assets/layers/04-automation.jpg"],
+   "public/layers/04-automation.jpg"],
   ["05", "Intelligence",
    ["GA4","Looker Studio","Attribution","Marketing Analytics","CRO","Experimentation","ROI"],
-   "assets/layers/05-intelligence.jpg"],
+   "public/layers/05-intelligence.jpg"],
 ];
 
 /* ── "WHAT HAPPENS WHEN YOU JOIN IDM" ─────────────────────────────
