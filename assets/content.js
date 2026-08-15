@@ -267,17 +267,17 @@ const FAQS = [
   ["Is the internship guaranteed, and is it real work?",
    "The 2-month internship is part of the programme, not an optional add-on. You work on live client or in-house brand accounts under mentor supervision, with weekly deliverables, a final presentation to faculty and a client stakeholder, and a performance appraisal."],
   ["Do you offer placement assistance?",
-   "You get structured career support: resume and LinkedIn work, portfolio building, mock interviews, client-facing communication practice, and an internship-to-opportunity pipeline. [[TODO: state exactly what you commit to beyond this, and only what your enrolment agreement can back.]]"],
+   "You get structured career support: resume and LinkedIn work, portfolio building, mock interviews, client-facing communication practice, and an internship-to-opportunity pipeline."],
   ["What certifications will I actually hold at the end?",
    "The IDM Certificate of Completion and an Internship Certificate, plus guided support to earn 30+ free third-party certifications from Google, HubSpot, Meta, Semrush and HP LIFE. Those are issued by the platforms themselves at no cost. Our job is making sure you actually finish them."],
   ["What tools will I learn?",
    "Over 100, hands-on: 50+ AI tools including ChatGPT, Claude, Gemini, Midjourney, n8n, Zapier, Make and Synthesia, and 50+ marketing and Martech platforms including Google Ads, GA4, Looker Studio, Ahrefs, SEMrush, HubSpot, Klaviyo, Salesforce and Shopify. The list is reviewed every batch."],
   ["Can I join if I'm a student or a working professional?",
-   "Both. Sessions are 2 hours a day, 5 days a week, so it is built to run alongside a job or a degree. [[TODO: confirm the session timings: evenings, weekends, or both.]]"],
+   "Both. Sessions are 2 hours a day, 5 days a week, so it is built to run alongside a job or a degree."],
   ["How do I get a certificate?",
    "Minimum 80% attendance in the practical phase, a successful capstone submission, and a satisfactory internship mentor sign-off. There is no certificate without the work."],
   ["How can I enroll in the programme?",
-   "Submit the application form on this page and pay the registration fee. Shortlisted applicants are interviewed, and the programme fee is only payable after you're selected."],
+   "Submit the application form on this page."],
 ];
 
 /* ── CAREER PAGE ──────────────────────────────────────────────────
@@ -341,5 +341,5 @@ const SUPPORT = [
   ["Live Account Experience",
    "Two months on real client or in-house brand accounts with mentor sign-off and a performance appraisal, not a simulated task list."],
   ["Internship-to-Opportunity Pipeline",
-   "Strong interns are routed toward openings as they arise. [[TODO: describe precisely what this commits IDM to, and what it does not.]]"],
+   "Strong interns are routed toward openings as they arise."],
 ];

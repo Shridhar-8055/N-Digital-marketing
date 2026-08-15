@@ -126,7 +126,7 @@
         </div>
 
         <div class="reveal mt-9 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4">
-          <a href="#apply"          class="btn-primary w-full sm:w-auto rounded-full px-8 py-4 font-semibold text-center">Talk to Mentor</a>
+          <a href="tel:+919606302009" class="btn-primary w-full sm:w-auto rounded-full px-8 py-4 font-semibold text-center">Talk to Mentor</a>
           <a href="curriculum.html" class="btn-ghost w-full sm:w-auto rounded-full px-8 py-4 font-semibold text-cream/70 text-center">Explore the Program</a>
         </div>
 
@@ -205,7 +205,7 @@
       <div>
         <ol id="journey" class="journey"></ol>
         <div class="text-center lg:text-left mt-12">
-          <a href="#apply" class="reveal btn-primary inline-block rounded-full px-10 py-4 font-semibold">Talk to Mentor</a>
+          <a href="tel:+919606302009" class="reveal btn-primary inline-block rounded-full px-10 py-4 font-semibold">Talk to Mentor</a>
         </div>
       </div>
 
@@ -413,7 +413,7 @@
           <li class="flex gap-3"><span class="text-accent shrink-0">✓</span><span><span class="text-cream font-medium">2-month live internship</span>, included and not an add-on</span></li>
         </ul>
 
-        <a href="#apply" class="btn-primary block text-center mt-8 rounded-full px-8 py-4 font-semibold">Talk to Mentor</a>
+        <a href="tel:+919606302009" class="btn-primary block text-center mt-8 rounded-full px-8 py-4 font-semibold">Talk to Mentor</a>
       </article>
 
     </div>
@@ -445,6 +445,12 @@
           Applications are reviewed in the order they arrive. Fill this in and we'll
           reach out with the next steps, the full syllabus, and your interview slot.
         </p>
+
+        <figure class="reveal mt-9">
+          <img src="public/idm-batch.jpg" width="1400" height="798" loading="lazy" decoding="async"
+               alt="An IDM batch with their programme completion certificates"
+               class="w-full rounded-2xl border border-line shadow-[0_24px_60px_-28px_rgba(0,0,0,.8)]">
+        </figure>
       </div>
 
       <!-- Submitted by site.js to LEADS_ENDPOINT (Google Sheet). The action
@@ -452,17 +458,17 @@
       <form id="applyForm" class="reveal card rounded-2xl p-7 sm:p-9 space-y-4 w-full xl:max-w-2xl" method="POST">
         <div>
           <label for="f-name" class="block text-[.85rem] font-medium mb-2">Name</label>
-          <input id="f-name" name="name" type="text" required
-                 class="w-full rounded-lg bg-ink border border-line px-4 py-3 text-[.95rem] outline-none focus:border-brandLift transition-colors">
-        </div>
-        <div>
-          <label for="f-email" class="block text-[.85rem] font-medium mb-2">Email</label>
-          <input id="f-email" name="email" type="email" required
+          <input id="f-name" name="name" type="text" required autocomplete="name"
                  class="w-full rounded-lg bg-ink border border-line px-4 py-3 text-[.95rem] outline-none focus:border-brandLift transition-colors">
         </div>
         <div>
           <label for="f-phone" class="block text-[.85rem] font-medium mb-2">Phone Number</label>
-          <input id="f-phone" name="phone" type="tel" required
+          <input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel"
+                 class="w-full rounded-lg bg-ink border border-line px-4 py-3 text-[.95rem] outline-none focus:border-brandLift transition-colors">
+        </div>
+        <div>
+          <label for="f-email" class="block text-[.85rem] font-medium mb-2">Email</label>
+          <input id="f-email" name="email" type="email" required autocomplete="email"
                  class="w-full rounded-lg bg-ink border border-line px-4 py-3 text-[.95rem] outline-none focus:border-brandLift transition-colors">
         </div>
         <div>
@@ -479,22 +485,9 @@
         </div>
         <div>
           <label for="f-city" class="block text-[.85rem] font-medium mb-2">City</label>
-          <input id="f-city" name="city" type="text" required
+          <input id="f-city" name="city" type="text" required autocomplete="address-level2"
                  class="w-full rounded-lg bg-ink border border-line px-4 py-3 text-[.95rem] outline-none focus:border-brandLift transition-colors">
         </div>
-        <fieldset>
-          <legend class="block text-[.85rem] font-medium mb-2">Are you able to relocate?</legend>
-          <div class="flex gap-3">
-            <label class="flex-1 cursor-pointer">
-              <input type="radio" name="relocate" value="Yes" class="peer sr-only" required>
-              <span class="block text-center rounded-lg border border-line py-3 text-[.92rem] peer-checked:border-brandLift peer-checked:bg-brand/25 transition-colors">Yes</span>
-            </label>
-            <label class="flex-1 cursor-pointer">
-              <input type="radio" name="relocate" value="No" class="peer sr-only">
-              <span class="block text-center rounded-lg border border-line py-3 text-[.92rem] peer-checked:border-brandLift peer-checked:bg-brand/25 transition-colors">No</span>
-            </label>
-          </div>
-        </fieldset>
         <p id="applyError" class="modal-error" hidden></p>
         <button type="submit" class="btn-primary w-full rounded-full px-8 py-4 font-semibold mt-2">Join Waitlist</button>
         <p class="text-[.78rem] text-cream/45 text-center">We'll only use your details to contact you about this program.</p>
