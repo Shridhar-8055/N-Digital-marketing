@@ -347,10 +347,10 @@ nav a.btn-primary::after{display:none;}
 /* white header band, so the column titles read off the dark body */
 .compare thead th{
   background:#fff;
-  font-family:'Inter',sans-serif;font-size:.74rem;font-weight:700;
-  letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(26,20,20,.55);
-  padding:1.05rem 1.25rem;
+  font-family:'Inter',sans-serif;font-size:.86rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(26,20,20,.78);
+  padding:1.15rem 1.25rem;
   border-bottom:1px solid rgba(26,20,20,.14);
   white-space:nowrap;
 }
@@ -359,14 +359,16 @@ nav a.btn-primary::after{display:none;}
    it heads is still identifiable from the top down */
 .compare thead th.is-idm{color:var(--brand);}
 
+/* Inter, not Sanchez: only regular and italic Sanchez are loaded, so
+   asking it for bold would give a synthesised, mushy weight */
 .compare tbody th{
-  font-family:'Sanchez',Georgia,serif;font-weight:400;
-  font-size:.96rem;color:var(--cream);
-  padding:.95rem 1.25rem;width:20%;vertical-align:middle;
+  font-family:'Inter',sans-serif;font-weight:700;
+  font-size:1.06rem;color:var(--accent);letter-spacing:.01em;
+  padding:1.05rem 1.25rem;width:20%;vertical-align:middle;
 }
 .compare tbody td{
-  font-size:.93rem;color:rgba(248,247,242,.6);
-  padding:.95rem 1.25rem;vertical-align:middle;width:40%;
+  font-size:1rem;font-weight:500;color:rgba(248,247,242,.78);
+  padding:1.05rem 1.25rem;vertical-align:middle;width:40%;
 }
 /* rule every column and row, which is what makes it read as a table */
 .compare tbody th,
@@ -381,7 +383,7 @@ nav a.btn-primary::after{display:none;}
 
 /* the IDM column carries the argument, so it stays lit the whole way down */
 .compare tbody td.is-idm{
-  color:var(--cream);font-weight:500;
+  color:#fff;font-weight:700;
   background:rgba(156,17,17,.15);
 }
 .compare tbody tr:nth-child(even) td.is-idm{background:rgba(156,17,17,.19);}
@@ -401,11 +403,11 @@ nav a.btn-primary::after{display:none;}
   }
   .compare tbody tr + tr th{border-top:0;}
   .compare tbody th{
-    width:auto;padding:.8rem 1rem .3rem;font-size:1.02rem;color:var(--accent);
+    width:auto;padding:.85rem 1rem .35rem;font-size:1.12rem;color:var(--accent);
     border-right:0;background:none;
   }
   .compare tbody td{
-    width:auto;padding:.55rem 1rem;border-right:0;border-top:0;background:none;
+    width:auto;padding:.6rem 1rem;font-size:1rem;border-right:0;border-top:0;background:none;
   }
   .compare tbody tr:nth-child(even) th,
   .compare tbody tr:nth-child(even) td{background:none;}
