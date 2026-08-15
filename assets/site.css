@@ -94,6 +94,9 @@ h1,h2,h3,.font-display{font-family:'Sanchez',Georgia,serif;}
   width:auto;height:auto;object-fit:contain;
 }
 .logo-tile:hover{transform:translateY(-3px);box-shadow:0 16px 34px -16px rgba(0,0,0,.7);}
+/* on a light section the tile's pale border vanishes, so darken it there */
+.bg-cream .logo-tile{border-color:rgba(26,20,20,.12);box-shadow:0 2px 10px -6px rgba(26,20,20,.35);}
+.bg-cream .logo-tile:hover{box-shadow:0 14px 30px -14px rgba(122,0,0,.45);}
 @media (max-width:640px){
   .logo-tile{height:4.5rem;width:9.5rem;padding:.75rem .9rem;}
   .logo-tile img{max-height:2.25rem;}

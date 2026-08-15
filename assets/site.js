@@ -319,11 +319,11 @@ if ($('faqList')) {
 /* ── career: roles ──────────────────────────────────────────────── */
 if ($('roleGrid')) {
   $('roleGrid').innerHTML = ROLES.map(([title, blurb, tags]) => `
-    <article class="reveal card rounded-2xl p-7 flex flex-col">
-      <h3 class="font-display text-[1.12rem] leading-snug mb-3">${esc(title)}</h3>
-      <p class="text-[.93rem] text-cream/65 leading-relaxed flex-1">${esc(blurb)}</p>
-      <div class="flex flex-wrap gap-2 mt-6 pt-5 border-t border-line">
-        ${tags.map(t => `<span class="rounded-full border border-line px-3 py-1 text-[.76rem] text-cream/55">${esc(t)}</span>`).join('')}
+    <article class="reveal rounded-2xl bg-white border border-inkDark/10 p-7 flex flex-col hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+      <h3 class="font-display text-[1.12rem] leading-snug mb-3 text-brandAlt">${esc(title)}</h3>
+      <p class="text-[.93rem] text-inkDark/70 leading-relaxed flex-1">${esc(blurb)}</p>
+      <div class="flex flex-wrap gap-2 mt-6 pt-5 border-t border-inkDark/10">
+        ${tags.map(t => `<span class="rounded-full border border-inkDark/15 px-3 py-1 text-[.76rem] text-inkDark/60">${esc(t)}</span>`).join('')}
       </div>
     </article>`).join('');
 }
