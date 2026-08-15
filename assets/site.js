@@ -67,7 +67,7 @@ if ($('logoRowA') || $('logoRowB')) {
 /* ── full curriculum accordion (curriculum.html) ────────────────── */
 if ($('moduleGrid')) {
   $('moduleGrid').innerHTML = MODULES.map(([title, points, tools, days], i) => `
-    <details class="reveal rounded-2xl bg-white border border-inkDark/10 overflow-hidden hover:border-brand/40 transition-colors">
+    <details class="reveal rounded-2xl card-light overflow-hidden hover:border-brand/40 transition-colors">
       <summary class="flex items-start gap-4 p-6">
         <span class="shrink-0 grid place-items-center h-9 w-9 rounded-lg bg-brand/10 text-brand text-[.85rem] font-semibold">${String(i+1).padStart(2,'0')}</span>
         <span class="flex-1 min-w-0">
@@ -102,7 +102,7 @@ if ($('internshipGrid')) {
 /* ── assessment weighting table (curriculum.html) ───────────────── */
 if ($('assessmentList')) {
   $('assessmentList').innerHTML = ASSESSMENT.map(([name, what, weight]) => `
-    <li class="reveal flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 rounded-xl bg-white border border-inkDark/10 px-6 py-5">
+    <li class="reveal flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 rounded-xl card-light px-6 py-5">
       <span class="font-display text-[1.5rem] leading-none text-brand shrink-0 sm:w-20">${esc(weight)}</span>
       <span class="flex-1 min-w-0">
         <span class="block font-display text-[1.02rem] text-inkDark">${esc(name)}</span>
@@ -114,7 +114,7 @@ if ($('assessmentList')) {
 /* ── curriculum preview — titles only, links out (index.html) ───── */
 if ($('modulePreview')) {
   $('modulePreview').innerHTML = MODULES.map(([title, , , days], i) => `
-    <div class="reveal flex items-center gap-4 rounded-xl bg-white border border-inkDark/10 px-5 py-4">
+    <div class="reveal flex items-center gap-4 rounded-xl card-light px-5 py-4">
       <span class="shrink-0 grid place-items-center h-8 w-8 rounded-lg bg-brand/10 text-brand text-[.78rem] font-semibold">${String(i+1).padStart(2,'0')}</span>
       <span class="min-w-0">
         <span class="block text-[.66rem] tracking-[.16em] uppercase text-brand/70 font-semibold">${esc(days)}</span>
@@ -226,7 +226,7 @@ if ($('pathGrid')) {
 /* ── career: what we actually do for you ────────────────────────── */
 if ($('supportGrid')) {
   $('supportGrid').innerHTML = SUPPORT.map(([title, blurb], i) => `
-    <article class="reveal rounded-2xl bg-white border border-inkDark/8 p-7 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+    <article class="reveal rounded-2xl card-light p-7 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
       <span class="block text-[.72rem] tracking-[.18em] uppercase text-brand font-semibold mb-3">${String(i+1).padStart(2,'0')}</span>
       <h3 class="font-display text-[1.08rem] mb-2.5 text-brandAlt">${esc(title)}</h3>
       <p class="text-[.92rem] leading-relaxed text-inkDark/70">${esc(blurb)}</p>
@@ -334,8 +334,7 @@ if (document.querySelector('[data-brochure]')) {
     <p class="eyebrow mb-3">Programme brochure</p>
     <h2 class="font-display text-[1.5rem] sm:text-[1.8rem] leading-snug mb-2">Get the Full Brochure</h2>
     <p class="text-[.94rem] text-cream/65 leading-relaxed mb-7">
-      The complete 12-module syllabus, the tool list, the internship
-      structure and the fee — as a PDF. Tell us where to send it.
+      The complete 12-module syllabus, the tool list, the internship structure.
     </p>
 
     <form id="brochureForm" novalidate>

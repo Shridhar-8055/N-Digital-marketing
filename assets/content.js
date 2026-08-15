@@ -22,8 +22,7 @@ const SKILLS = ["AI-First Marketing","Generative AI","Prompt Engineering","SEO",
 const STATS = [
   ["12",  "",  "Modules"],
   ["120", "",  "Live hours"],
-  ["100", "+", "Tools, hands-on"],
-  ["30",  "+", "Free certifications"],
+  ["30",  "+", "Certifications"],
   ["2",   "",  "Months of internship"],
 ];
 
