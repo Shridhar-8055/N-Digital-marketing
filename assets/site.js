@@ -324,11 +324,12 @@ const BROCHURE_FILE = 'public/IDM-Course-Syllabus.pdf';
    Both the brochure modal and the application form post here.
    Setup is in google-apps-script.gs — deploy it, paste the /exec URL
    below, and rows start appearing in the sheet.
-   [[TODO: paste your Apps Script Web App URL here. While it is empty
-   nothing is recorded: the forms still work for the visitor, but the
-   lead is discarded. ]]
+   Deployed 15 Aug 2026. Health check: open the URL in a browser, it
+   answers {"ok":true,...,"rows":N}. If you redeploy the script, Apps
+   Script issues a NEW /exec URL unless you update the existing
+   deployment — update it here if it changes.
 ══════════════════════════════════════════════════════════════════ */
-const LEADS_ENDPOINT = '';
+const LEADS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzWVxn-XPb1lq9OL5z-fPbfpmEveF8IQs1hO4tLU_H4Rf8rkJljX3rCQc45nvpmb7Jn/exec';
 
 /* Apps Script answers a POST with a 302 to a googleusercontent URL that
    carries no CORS headers, so a normal fetch rejects AFTER the row has
