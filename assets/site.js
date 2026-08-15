@@ -9,6 +9,45 @@
 const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $   = id => document.getElementById(id);
 
+/* ── footer contact + social icons ──────────────────────────────── */
+if ($('footContact') || $('footSocial')) {
+  const c = CONTACT;
+
+  if ($('footContact')) {
+    const row = (icon, label, href) => href
+      ? `<li><a href="${href}" class="foot-contact">${icon}<span>${esc(label)}</span></a></li>`
+      : `<li><span class="foot-contact">${icon}<span>${esc(label)}</span></span></li>`;
+
+    const ICON_PHONE = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>`;
+    const ICON_WA = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 004.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm4.99 13.6c-.21.59-1.24 1.15-1.72 1.2-.44.05-.99.07-1.6-.1a13.3 13.3 0 01-1.45-.54c-2.55-1.1-4.22-3.67-4.35-3.84-.13-.17-1.05-1.39-1.05-2.65s.66-1.88.9-2.14c.23-.26.51-.32.68-.32h.49c.16 0 .37-.06.58.44.21.51.72 1.76.78 1.89.06.13.1.28.02.45-.09.17-.13.28-.26.43l-.39.45c-.13.13-.26.27-.11.53.15.26.66 1.09 1.42 1.76.97.87 1.79 1.14 2.05 1.27.26.13.41.11.56-.07.15-.17.64-.75.81-1.01.17-.26.34-.21.57-.13.23.09 1.47.69 1.72.82.26.13.43.19.49.3.06.1.06.6-.14 1.19z"/></svg>`;
+    const ICON_MAIL = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4.24l-8 4.62-8-4.62V6l8 4.62L20 6v2.24z"/></svg>`;
+    const ICON_PIN = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>`;
+
+    $('footContact').innerHTML =
+      row(ICON_PHONE, c.phoneLabel, 'tel:' + c.tel)
+      + row(ICON_WA, 'WhatsApp us', 'https://wa.me/' + c.whatsapp)
+      + (c.email   ? row(ICON_MAIL, c.email, 'mailto:' + c.email) : '')
+      + (c.address ? row(ICON_PIN, c.address, '') : '');
+  }
+
+  if ($('footSocial')) {
+    const PATHS = {
+      Instagram: 'M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 01-1.38-.9 3.8 3.8 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.24a6.6 6.6 0 100 13.2 6.6 6.6 0 000-13.2zm0 10.89a4.29 4.29 0 110-8.58 4.29 4.29 0 010 8.58zm8.4-11.15a1.54 1.54 0 11-3.08 0 1.54 1.54 0 013.08 0z',
+      LinkedIn:  'M6.94 5a2 2 0 11-4 0 2 2 0 014 0zM3.2 8.5h3.5V21H3.2V8.5zm5.9 0h3.35v1.7h.05c.47-.85 1.6-1.75 3.3-1.75 3.53 0 4.2 2.2 4.2 5.05V21h-3.5v-6.1c0-1.45-.03-3.3-2.05-3.3-2.05 0-2.36 1.57-2.36 3.2V21H9.1V8.5z',
+      YouTube:   'M23 12s0-3.4-.43-5.03a2.6 2.6 0 00-1.84-1.85C19.1 4.7 12 4.7 12 4.7s-7.1 0-8.73.42A2.6 2.6 0 001.43 6.97C1 8.6 1 12 1 12s0 3.4.43 5.03a2.6 2.6 0 001.84 1.85c1.63.42 8.73.42 8.73.42s7.1 0 8.73-.42a2.6 2.6 0 001.84-1.85C23 15.4 23 12 23 12zM9.75 15.27V8.73L15.5 12l-5.75 3.27z',
+      Facebook:  'M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.9h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z',
+      X:         'M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.22-6.82-5.96 6.82H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64z',
+    };
+    $('footSocial').innerHTML = SOCIALS.map(([name, url]) => {
+      const svg = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="${PATHS[name] || ''}"/></svg>`;
+      /* no URL yet: render it dimmed and inert rather than as a dead link */
+      return url
+        ? `<a class="foot-social" href="${url}" target="_blank" rel="noopener noreferrer" aria-label="${esc(name)}" title="${esc(name)}">${svg}</a>`
+        : `<span class="foot-social is-off" aria-hidden="true" title="${esc(name)} (not set)">${svg}</span>`;
+    }).join('');
+  }
+}
+
 /* ── success stories carousel ───────────────────────────────────── */
 if ($('storyTrack')) {
   const initials = n => n.replace(/\[\[.*?\]\]/g, '').trim().split(/\s+/)

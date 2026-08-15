@@ -289,30 +289,52 @@
 
 
 <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
-<footer class="py-14 bg-surface2">
+<footer class="pt-16 pb-10 bg-surface2 border-t border-line">
   <div class="mx-auto max-w-site px-5 sm:px-8 xl:px-14 2xl:px-20">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
 
-      <div class="text-center md:text-left">
-        <img src="public/logo-idm-offwhite.png" alt="IDM Integrated Digital Marketing" class="h-9 w-auto mx-auto md:mx-0">
-        <p class="mt-4 text-[.88rem] text-cream/50 max-w-xs">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+
+      <div>
+        <img src="public/logo-idm-offwhite.png" alt="IDM Integrated Digital Marketing" class="h-9 w-auto">
+        <p class="mt-4 text-[.88rem] text-cream/50 leading-relaxed max-w-xs">
           We help modern brands build scalable marketing systems that drive
           predictable revenue through search and social.
         </p>
+        <div id="footSocial" class="foot-socials mt-6"></div>
       </div>
 
-      <nav class="flex flex-wrap justify-center gap-7 text-[.9rem] text-cream/65">
-        <a href="index.html"       class="hover:text-cream transition-colors">Home</a>
-        <a href="curriculum.html"  class="hover:text-cream transition-colors">Curriculum</a>
-        <a href="career.html"      class="hover:text-cream transition-colors">Career</a>
-        <a href="index.html#fees"  class="hover:text-cream transition-colors">Fees</a>
-        <a href="index.html#faq"   class="hover:text-cream transition-colors">FAQs</a>
-        <a href="index.html#apply" class="hover:text-cream transition-colors">Apply</a>
-      </nav>
+      <div>
+        <p class="foot-title">Explore</p>
+        <ul class="foot-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="curriculum.html">Curriculum</a></li>
+          <li><a href="career.html">Career</a></li>
+          <li><a href="index.html#fees">Fees</a></li>
+          <li><a href="index.html#faq">FAQs</a></li>
+          <li><a href="index.html#apply">Apply</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="foot-title">Legal</p>
+        <ul class="foot-links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="refund-policy.html">Refund &amp; Cancellation</a></li>
+          <li><a href="privacy-policy.html#cookies">Cookie Notice</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="foot-title">Contact Us</p>
+        <ul id="footContact" class="foot-links"></ul>
+        <a href="index.html#apply" class="btn-primary inline-block mt-6 rounded-full px-6 py-3 text-[.88rem] font-semibold">Apply Now</a>
+      </div>
     </div>
 
-    <div class="mt-10 pt-7 border-t border-line text-center text-[.82rem] text-cream/40">
-      © <span id="year"></span> IDM Integrated Digital Marketing. All rights reserved.
+    <div class="mt-12 pt-7 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4 text-[.82rem] text-cream/40">
+      <p>&copy; <span id="year"></span> IDM Integrated Digital Marketing. All rights reserved.</p>
+      <p>Bengaluru, India</p>
     </div>
   </div>
 </footer>

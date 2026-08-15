@@ -15,6 +15,27 @@ const SKILLS = ["AI-First Marketing","Generative AI","Prompt Engineering","SEO",
   "Email & WhatsApp Automation","AI Agents","No-Code Automation","Martech & CRM",
   "Conversion Optimisation","Influencer Marketing","E-commerce"];
 
+/* ── CONTACT & SOCIAL ─────────────────────────────────────────────
+   Fill a social URL and its icon becomes a link; leave it empty and the
+   icon renders dimmed and unclickable, so the footer never ships a dead
+   link. Same for email and address: empty means the line is skipped.
+   ────────────────────────────────────────────────────────────────── */
+const CONTACT = {
+  phoneLabel: '+91 96063 02009',
+  tel:        '+919606302009',
+  whatsapp:   '919606302009',
+  email:      '',            /* [[TODO: support@ address]] */
+  address:    '',            /* [[TODO: office address]]  */
+};
+
+const SOCIALS = [
+  ['Instagram', ''],         /* [[TODO: profile URLs]] */
+  ['LinkedIn',  ''],
+  ['YouTube',   ''],
+  ['Facebook',  ''],
+  ['X',         ''],
+];
+
 /* ── SUCCESS STORIES carousel ─────────────────────────────────────
    [name, photo, panel tint, company, from, to, package]
 

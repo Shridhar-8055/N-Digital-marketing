@@ -318,6 +318,53 @@ nav a.btn-primary::after{display:none;}
   margin:.25rem 0 0;font-size:.85rem;color:#ff9a97;
 }
 
+/* ── legal pages: readable long-form text ───────────────────────── */
+.legal{font-size:.98rem;line-height:1.75;color:rgba(248,247,242,.72);}
+.legal h2{
+  font-family:'Sanchez',Georgia,serif;font-size:1.25rem;color:var(--cream);
+  margin:2.4rem 0 .8rem;padding-top:1.6rem;border-top:1px solid var(--line);
+}
+.legal h2:first-of-type{margin-top:1.6rem;}
+.legal p{margin-bottom:1.1rem;}
+.legal p:last-child{margin-bottom:0;}
+.legal a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+
+/* ── footer ─────────────────────────────────────────────────────── */
+.foot-title{
+  font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1.1rem;
+}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:.65rem;}
+.foot-links a{
+  font-size:.9rem;color:rgba(248,247,242,.62);
+  transition:color .2s ease,padding-left .2s ease;
+}
+.foot-links a:hover{color:var(--cream);padding-left:.25rem;}
+
+.foot-contact{display:inline-flex;align-items:center;gap:.6rem;font-size:.9rem;color:rgba(248,247,242,.62);}
+.foot-contact svg{width:1rem;height:1rem;flex:0 0 auto;color:var(--accent);}
+a.foot-contact:hover{color:var(--cream);}
+
+.foot-socials{display:flex;gap:.6rem;flex-wrap:wrap;}
+.foot-social{
+  width:2.25rem;height:2.25rem;border-radius:9999px;
+  display:grid;place-items:center;
+  border:1px solid var(--line);color:rgba(248,247,242,.7);
+  transition:border-color .2s ease,color .2s ease,background .2s ease,transform .2s ease;
+}
+.foot-social svg{width:1.05rem;height:1.05rem;}
+a.foot-social:hover{
+  border-color:var(--brand-lift);color:var(--cream);
+  background:rgba(156,17,17,.18);transform:translateY(-2px);
+}
+/* rendered when no profile URL is set: visible, but plainly not a link */
+.foot-social.is-off{opacity:.3;cursor:default;}
+
+@media (prefers-reduced-motion:reduce){
+  .foot-links a,.foot-social{transition:none;}
+  a.foot-social:hover{transform:none;}
+}
+
 /* ── floating contact buttons ───────────────────────────────────── */
 .fab-stack{
   position:fixed;right:1rem;bottom:1rem;z-index:60;
