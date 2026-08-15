@@ -20,7 +20,7 @@ tailwind.config = {
         creamAlt:  '#f9fafb',
         inkDark:   '#1a1414',   // body text on light surfaces
       },
-      maxWidth: { site: '1200px' },
+      maxWidth: { site: '100%' },   // full-bleed shell; gutters come from px-* on the container
     }
   }
 }
