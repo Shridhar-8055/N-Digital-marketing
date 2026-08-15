@@ -177,7 +177,7 @@ if ($('layerStack')) {
   panels.forEach((p, i) => {
     p.tabIndex = 0;
     p.setAttribute('role', 'button');
-    p.setAttribute('aria-label', LAYERS[i][1] + " — show what's covered");
+    p.setAttribute('aria-label', LAYERS[i][1] + ": show what's covered");
     if (finePointer) p.addEventListener('mouseenter', () => openPanel(p));
     p.addEventListener('click', () => openPanel(p));
     p.addEventListener('keydown', e => {
@@ -365,17 +365,17 @@ const VARIANTS = {
     cta:      'Download Brochure',
     working:  'Preparing…',
     download: true,
-    doneTitle:'Thanks — check your downloads.',
+    doneTitle:'Thanks, check your downloads.',
     doneBody: "Your brochure is downloading. We'll be in touch shortly.",
   },
   'auto-popup': {
     eyebrow:  'Talk to a mentor',
     title:    'Have a Question First?',
-    body:     'Leave your details and a mentor will call you back with the session timings, the fee and honest answers — before you commit to anything.',
+    body:     'Leave your details and a mentor will call you back with the session timings, the fee and honest answers, before you commit to anything.',
     cta:      'Request a Callback',
     working:  'Sending…',
     download: false,
-    doneTitle:"Thanks — we've got your details.",
+    doneTitle:"Thanks, we've got your details.",
     doneBody: 'A mentor will call you back shortly.',
   },
 };
@@ -531,7 +531,7 @@ if (document.querySelector('[data-brochure]')) {
     dlg.querySelector('#brochureDoneTitle').textContent = v.doneTitle;
     doneMsg.textContent = sent
       ? v.doneBody
-      : "We couldn't reach the file just now — we'll email the syllabus to you shortly.";
+      : "We couldn't reach the file just now. We'll email the syllabus to you shortly.";
   });
 }
 
@@ -593,7 +593,7 @@ if (applyForm) {
        still confirm to the user rather than blaming them for our gap —
        but that case is loud in the console so it gets noticed. */
     if (!LEADS_ENDPOINT) {
-      console.warn('[IDM] LEADS_ENDPOINT is empty — this application was NOT recorded.');
+      console.warn('[IDM] LEADS_ENDPOINT is empty. This application was NOT recorded.');
     }
     applyForm.hidden = true;
     done.hidden = false;
