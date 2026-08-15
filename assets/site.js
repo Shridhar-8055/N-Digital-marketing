@@ -400,14 +400,48 @@ if (document.querySelector('[data-brochure]')) {
   const doneMsg= dlg.querySelector('#brochureDoneMsg');
   const submit = form.querySelector('button[type=submit]');
 
-  const open = () => {
+  let opener = 'brochure-button';       /* recorded as Source in the sheet */
+  const open = (via) => {
+    opener = via || 'brochure-button';
     errBox.hidden = true; done.hidden = true; form.hidden = false;
     submit.disabled = false; submit.textContent = 'Download Brochure';
     dlg.showModal();
     dlg.querySelector('#b-name').focus();
   };
   document.querySelectorAll('[data-brochure]').forEach(el =>
-    el.addEventListener('click', e => { e.preventDefault(); open(); }));
+    el.addEventListener('click', e => { e.preventDefault(); open('brochure-button'); }));
+
+  /* ── timed popup ──────────────────────────────────────────────────
+     Opens once, 5s in. The rules exist so it never becomes a nuisance:
+       · submitted   -> never again on this device (localStorage)
+       · dismissed   -> not again this session   (sessionStorage)
+       · mid-typing  -> wait, do not steal the cursor from someone who
+                        is already filling the application form
+     Storage is wrapped because Safari private mode throws on access
+     rather than returning null. */
+  const DONE_KEY = 'idm.brochure.submitted';
+  const SEEN_KEY = 'idm.brochure.seen';
+  const store = (area, key, val) => {
+    try {
+      if (val === undefined) return window[area].getItem(key);
+      window[area].setItem(key, val);
+    } catch { return null; }
+  };
+  const handled = () =>
+    store('localStorage', DONE_KEY) === '1' || store('sessionStorage', SEEN_KEY) === '1';
+
+  const autoOpen = () => {
+    if (dlg.open || handled()) return;
+    const busy = /^(INPUT|SELECT|TEXTAREA)$/.test((document.activeElement || {}).tagName || '');
+    if (busy) { setTimeout(autoOpen, 8000); return; }   /* try again later */
+    /* Marked as shown at open time, not on close. The dialog "close" event
+       proved unreliable, and keying suppression off a dismissal would let
+       the popup return if that event were ever missed. Shown-once is the
+       guarantee worth having. */
+    store('sessionStorage', SEEN_KEY, '1');
+    open('auto-popup');
+  };
+  if (!handled()) setTimeout(autoOpen, 5000);
 
   dlg.querySelector('.modal-x').addEventListener('click', () => dlg.close());
   /* click on the backdrop (i.e. outside the panel) closes it */
@@ -450,12 +484,13 @@ if (document.querySelector('[data-brochure]')) {
     /* Never block the download on the lead POST — the user did their
        part, and a lost lead is our problem, not theirs. */
     await sendLead({
-      source: 'brochure-download',
+      source: opener,
       name:   form.querySelector('#b-name').value.trim(),
       email:  form.querySelector('#b-email').value.trim(),
       phone:  form.querySelector('#b-phone').value.trim(),
     });
 
+    store('localStorage', DONE_KEY, '1');   /* they have it; stop asking */
     const sent = await deliver();
     form.hidden = true;
     done.hidden = false;
