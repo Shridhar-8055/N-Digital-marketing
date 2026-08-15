@@ -16,14 +16,19 @@ if ($('skillChips')) {
   ).join('');
 }
 
-/* ── placement marquee ──────────────────────────────────────────── */
-/* [[TODO: replace with real partner logos — only companies that have agreed to be listed]] */
-if ($('logoTrack')) {
-  const tiles = () => Array.from({length:6}, (_,i) =>
-    `<div class="grid place-items-center h-20 w-44 rounded-xl border border-line bg-surface text-cream/35 text-[.8rem] tracking-wide">LOGO ${i+1}</div>`
-  ).join('');
-  $('logoTrack').innerHTML =
-    `<div class="flex gap-4 shrink-0">${tiles()}</div><div class="flex gap-4 shrink-0" aria-hidden="true">${tiles()}</div>`;
+/* ── placement marquee — two rows, opposite directions ──────────── */
+if ($('logoRowA') || $('logoRowB')) {
+  const tile = ([file, brand]) =>
+    `<div class="logo-tile"><img src="public/${file}" alt="${esc(brand)}" loading="lazy" decoding="async"></div>`;
+  /* the set is duplicated so the loop has no visible seam; the copy is
+     hidden from screen readers so each brand is announced once */
+  const fill = (el, list) => {
+    const set = list.map(tile).join('');
+    el.innerHTML = `<div class="logo-row">${set}</div><div class="logo-row" aria-hidden="true">${set}</div>`;
+  };
+  const mid = Math.ceil(LOGOS.length / 2);
+  if ($('logoRowA')) fill($('logoRowA'), LOGOS.slice(0, mid));
+  if ($('logoRowB')) fill($('logoRowB'), LOGOS.slice(mid));
 }
 
 /* ── full curriculum accordion (curriculum.html) ────────────────── */

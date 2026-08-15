@@ -15,6 +15,32 @@ const SKILLS = ["AI-First Marketing","Generative AI","Prompt Engineering","SEO",
   "Email & WhatsApp Automation","AI Agents","No-Code Automation","Martech & CRM",
   "Conversion Optimisation","Influencer Marketing","E-commerce"];
 
+/* ── PLACEMENT MARQUEE ────────────────────────────────────────────
+   [file in public/, brand name for the alt text]
+   Rendered as two rows scrolling in opposite directions. Split point is
+   the midpoint, so adding a logo rebalances both rows automatically.
+
+   [[TODO: LEGAL — these are third-party trademarks shown under a
+   "Get Placed At" heading, which represents that IDM students are placed
+   at these companies. Show a logo only where you have (a) an actual
+   placement or hiring relationship and (b) written permission to use the
+   mark. Remove any that fail either test.]]
+   ────────────────────────────────────────────────────────────────── */
+const LOGOS = [
+  ["airbnb.png",   "Airbnb"],
+  ["myntra.png",   "Myntra"],
+  ["blinkit.png",  "Blinkit"],
+  ["district.png", "District by Zomato"],
+  ["tinder.png",   "Tinder"],
+  ["bewakoof.png", "Bewakoof"],
+  ["godrej.png",   "Godrej"],
+  ["oyo.png",      "OYO"],
+  ["muthoot.png",  "Muthoot Finance"],
+  ["matrix.png",   "Matrix Realty"],
+  ["sunwing.png",  "Sunwing Solutions"],
+  ["novamind.png", "Novamind"],
+];
+
 /* ── THE 12 MODULES ───────────────────────────────────────────────
    [title, [key topics], tools covered, day range]
    60 training days · 120 hours · 10 hours per module.

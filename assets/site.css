@@ -60,8 +60,36 @@ h1,h2,h3,.font-display{font-family:'Sanchez',Georgia,serif;}
 }
 
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.marquee-track{animation:marquee 32s linear infinite;width:max-content;}
+.marquee-track{animation:marquee 42s linear infinite;width:max-content;display:flex;}
+/* second row runs the other way, and slightly slower so the two never
+   sync up into looking like one block */
+.marquee-track.reverse{animation-direction:reverse;animation-duration:52s;}
 .marquee:hover .marquee-track{animation-play-state:paused;}
+.logo-row{display:flex;gap:1rem;flex:0 0 auto;padding-right:1rem;}
+
+/* white tiles: four of the brand marks are dark or red ink, which would
+   disappear against the maroon if set bare on the background */
+.logo-tile{
+  flex:0 0 auto;display:grid;place-items:center;
+  height:5.25rem;width:11.5rem;padding:.9rem 1rem;
+  border-radius:.9rem;background:#fff;
+  border:1px solid rgba(248,247,242,.14);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+/* explicit cap, not max-height:100% — a percentage resolves against an
+   indefinite grid area here and gets dropped, so the square marks sized
+   off max-width alone and spilled out of the tile.
+   The source files are trimmed to their artwork, so the marks fill this
+   box; square logos hit the height cap, wordmarks hit the width cap. */
+.logo-tile img{
+  max-height:2.75rem;max-width:100%;
+  width:auto;height:auto;object-fit:contain;
+}
+.logo-tile:hover{transform:translateY(-3px);box-shadow:0 16px 34px -16px rgba(0,0,0,.7);}
+@media (max-width:640px){
+  .logo-tile{height:4.5rem;width:9.5rem;padding:.75rem .9rem;}
+  .logo-tile img{max-height:2.25rem;}
+}
 
 details>summary{list-style:none;cursor:pointer;}
 details>summary::-webkit-details-marker{display:none;}
