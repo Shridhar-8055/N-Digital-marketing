@@ -333,59 +333,91 @@ nav a.btn-primary::after{display:none;}
 .legal a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
 
 /* ── typical course vs IDM ──────────────────────────────────────────
-   Table on desktop; below 768px each row becomes a small card, because
-   three columns of prose on a phone is unreadable at any size that fits.
+   A framed table: header band, ruled columns and rows, the IDM column
+   tinted top to bottom. The first version only had horizontal rules,
+   which read as a list rather than a comparison.
    ─────────────────────────────────────────────────────────────────── */
-.compare{width:100%;border-collapse:collapse;text-align:left;}
-.compare thead th{
-  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;
-  letter-spacing:.18em;text-transform:uppercase;color:rgba(248,247,242,.45);
-  padding:0 1.1rem 1rem;
+.compare-frame{
+  border:1px solid var(--line);border-radius:1rem;overflow:hidden;
+  background:var(--surface);
+  box-shadow:0 22px 60px -34px rgba(0,0,0,.75);
 }
-.compare thead th.is-idm{color:var(--accent);}
+.compare{width:100%;border-collapse:collapse;text-align:left;}
+
+.compare thead th{
+  background:var(--surface-2);
+  font-family:'Inter',sans-serif;font-size:.74rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(248,247,242,.55);
+  padding:1.05rem 1.25rem;
+  border-bottom:1px solid var(--line);
+  white-space:nowrap;
+}
+.compare thead th.is-idm{
+  color:var(--accent);
+  background:linear-gradient(180deg,rgba(156,17,17,.42),rgba(156,17,17,.26));
+}
+
 .compare tbody th{
   font-family:'Sanchez',Georgia,serif;font-weight:400;
-  font-size:.98rem;color:var(--cream);
-  padding:1rem 1.1rem;width:22%;vertical-align:top;
+  font-size:.96rem;color:var(--cream);
+  padding:.95rem 1.25rem;width:20%;vertical-align:middle;
 }
 .compare tbody td{
-  font-size:.94rem;color:rgba(248,247,242,.62);
-  padding:1rem 1.1rem;vertical-align:top;
+  font-size:.93rem;color:rgba(248,247,242,.6);
+  padding:.95rem 1.25rem;vertical-align:middle;width:40%;
 }
-.compare tbody tr{border-top:1px solid var(--line);}
-.compare tbody tr:hover{background:rgba(156,17,17,.07);}
+/* rule every column and row, which is what makes it read as a table */
+.compare tbody th,
+.compare tbody td{border-right:1px solid var(--line);}
+.compare tbody td:last-child{border-right:0;}
+.compare tbody tr + tr th,
+.compare tbody tr + tr td{border-top:1px solid var(--line);}
+.compare tbody tr:nth-child(even) th,
+.compare tbody tr:nth-child(even) td{background:rgba(248,247,242,.02);}
+.compare tbody tr:hover th,
+.compare tbody tr:hover td{background:rgba(156,17,17,.10);}
 
-/* the IDM column is the point of the table, so it is lit */
-.compare .is-idm{
+/* the IDM column carries the argument, so it stays lit the whole way down */
+.compare tbody td.is-idm{
   color:var(--cream);font-weight:500;
-  background:linear-gradient(180deg,rgba(156,17,17,.16),rgba(156,17,17,.09));
-  border-left:1px solid rgba(156,17,17,.35);
-  border-right:1px solid rgba(156,17,17,.35);
+  background:rgba(156,17,17,.15);
 }
-.compare tbody tr:first-child .is-idm{border-top:1px solid rgba(156,17,17,.35);}
-.compare tbody tr:last-child  .is-idm{border-bottom:1px solid rgba(156,17,17,.35);}
+.compare tbody tr:nth-child(even) td.is-idm{background:rgba(156,17,17,.19);}
+.compare tbody tr:hover td.is-idm{background:rgba(156,17,17,.26);}
+.compare td.is-idm::before{
+  content:"✓";
+  color:var(--accent);font-weight:700;margin-right:.55rem;
+}
 
 @media (max-width:767px){
+  .compare-frame{border:0;border-radius:0;background:none;box-shadow:none;}
   .compare thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
   .compare, .compare tbody, .compare tr, .compare th, .compare td{display:block;width:auto;}
   .compare tbody tr{
     border:1px solid var(--line);border-radius:.9rem;
-    background:var(--surface);margin-bottom:.75rem;padding:.35rem .25rem;
+    background:var(--surface);margin-bottom:.75rem;overflow:hidden;
   }
+  .compare tbody tr + tr th{border-top:0;}
   .compare tbody th{
-    width:auto;padding:.75rem .9rem .25rem;font-size:1.02rem;color:var(--accent);
+    width:auto;padding:.8rem 1rem .3rem;font-size:1.02rem;color:var(--accent);
+    border-right:0;background:none;
   }
-  .compare tbody td{padding:.5rem .9rem;}
+  .compare tbody td{
+    width:auto;padding:.55rem 1rem;border-right:0;border-top:0;background:none;
+  }
+  .compare tbody tr:nth-child(even) th,
+  .compare tbody tr:nth-child(even) td{background:none;}
   .compare tbody td::before{
     content:attr(data-label);display:block;
-    font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
-    color:rgba(248,247,242,.38);margin-bottom:.2rem;
+    font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;
+    color:rgba(248,247,242,.38);margin-bottom:.15rem;font-weight:600;
   }
-  .compare .is-idm{
-    border:0;border-radius:.6rem;margin:.25rem .55rem .6rem;
-    padding:.6rem .8rem;
+  .compare tbody td.is-idm{
+    background:rgba(156,17,17,.16);
+    margin:.3rem .7rem .75rem;padding:.6rem .8rem;border-radius:.6rem;
   }
-  .compare .is-idm::before{color:var(--accent);}
+  .compare tbody td.is-idm::before{content:attr(data-label);color:var(--accent);}
 }
 
 /* ── footer ─────────────────────────────────────────────────────── */
