@@ -384,9 +384,9 @@
       <p class="reveal mt-5 text-cream/65">Placement support included. No additional fee.</p>
     </div>
 
-    <!-- single card now; capped and centred, because one pricing card
-         stretched across a full-width section reads as a banner, not a price -->
-    <div class="max-w-2xl mx-auto">
+    <!-- card left, programme film right; capped and centred, because one pricing
+         card stretched across a full-width section reads as a banner, not a price -->
+    <div class="max-w-2xl lg:max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
       <article class="reveal rounded-3xl border border-brandLift bg-gradient-to-b from-brand/30 to-transparent p-9 sm:p-10">
         <p class="eyebrow mb-4">Your Investment</p>
@@ -399,11 +399,20 @@
                to honour it for every graduate, indefinitely, before it goes live.]] -->
           <li class="flex gap-3"><span class="text-accent shrink-0">✓</span><span><span class="text-cream font-medium">Lifetime free mentorship</span> for every graduate</span></li>
           <li class="flex gap-3"><span class="text-accent shrink-0">✓</span><span><span class="text-cream font-medium">Exclusive access</span>: 20 seats only</span></li>
-          <li class="flex gap-3"><span class="text-accent shrink-0">✓</span><span><span class="text-cream font-medium">3-month live internship</span>, included and not an add-on</span></li>
+          <li class="flex gap-3"><span class="text-accent shrink-0">✓</span><span><span class="text-cream font-medium">2-month live internship</span>, included and not an add-on</span></li>
         </ul>
 
         <a href="tel:+919606302009" class="btn-primary block text-center mt-8 rounded-full px-8 py-4 font-semibold">Talk to Mentor</a>
       </article>
+
+      <!-- same lazy treatment as the intro film: the file stays unfetched
+           until the section is reached. site.js swaps the src in. -->
+      <div class="reveal join-video-frame">
+        <video class="join-video" data-src="public/InShot_20260817_125439198.mp4"
+               muted loop playsinline controls preload="none"
+               width="1704" height="1080"
+               aria-label="Inside the IDM programme"></video>
+      </div>
 
     </div>
   </div>
