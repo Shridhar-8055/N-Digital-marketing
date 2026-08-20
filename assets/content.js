@@ -48,7 +48,7 @@ const CONTACT = {
      admissions@idmacademy.in, correct it here — as written, every reply
      a prospect sends will bounce. ]] */
   email:      'admissions@idmacademy.iin',
-  address:    '587, 3rd Floor, 100 Feet Rd, Dwarakanagar, opposite Mariya Mart, Vajarahalli, Talaghattapura, Bengaluru, Karnataka 560062',
+  address:    '74 Crown Street, London SW18 6SD, United Kingdom',
 };
 
 const SOCIALS = [
